@@ -12,6 +12,15 @@ mod arch;
 
 mod kmain;
 mod panic;
+
+pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
+#[cfg(debug_assertions)]
+/// A constant to check if the kernel is in debug mode
+pub const RELEASE_TYPE: &str = "debug";
+#[cfg(not(debug_assertions))]
+/// A constant to check if the kernel is in release mode
+pub const RELEASE_TYPE: &str = "release";
+
 // These functions below provide definitions for symbols libcore
 // expects which are not present on our bare metal target. You
 // will not encounter linker errors until you use a part of

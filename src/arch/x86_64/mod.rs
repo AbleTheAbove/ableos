@@ -1,6 +1,6 @@
 pub mod init;
 
-static HELLO: &[u8] = b"Hello World!";
+static HELLO: &[u8] = b"Running on x86_64";
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
