@@ -1,7 +1,7 @@
-use super::{getc, write, writec};
+use super::{getc, mbox, write, writec};
 
 pub fn init() {
-    write("Hello Rust Kernel world!");
+    write("booted on arm :>\n");
 
     writec(getc());
 }

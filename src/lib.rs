@@ -1,5 +1,6 @@
 #![no_std]
-#![feature(core_intrinsics, lang_items)]
+#![feature(core_intrinsics, lang_items, llvm_asm)]
+#![feature(alloc_error_handler)] // at the top of the file
 
 #[cfg(target_arch = "arm")]
 #[path = "arch/arm/mod.rs"]

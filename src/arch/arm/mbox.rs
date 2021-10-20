@@ -1,0 +1,2 @@
+const MMIO_BASE: u32 = 0x3F00_0000;
+const VIDEOCORE_MBOX: u32 = MMIO_BASE + 0xB880;
