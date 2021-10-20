@@ -32,7 +32,6 @@ use able_graphics_lib as agl;
 
 #[no_mangle]
 pub extern "C" fn __aeabi_unwind_cpp_pr0() {}
-
 #[lang = "eh_personality"]
 pub extern "C" fn eh_personality() {}
 

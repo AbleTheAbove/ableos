@@ -11,7 +11,9 @@ Install [Qemu](https://www.qemu.org/)
 
 `cargo install bootimage`
 
-
+## Srange workarounds
+- arm/build.rs has to move main.rs
+- conditional dependencies for bootloader are broken 
 ## Testing on real hardware
 I recommend using an old x86_64 computer
 * `cargo run --release` to generate a binary image that is bootable
