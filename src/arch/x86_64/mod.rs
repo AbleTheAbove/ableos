@@ -1,5 +1,5 @@
 pub mod init;
-use cpuio::{outb, outw};
+use cpuio::outb;
 
 static HELLO: &[u8] = b"Running on x86_64";
 

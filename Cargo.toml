@@ -8,6 +8,7 @@ panic = "abort"
 
 [dependencies]
 # bootloader = "0.9.8"
+# cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
 
 [dependencies.able-graphics-lib]
 git = "https://github.com/AbleTheAbove/able-graphics-lib"
@@ -16,4 +17,3 @@ git = "https://github.com/AbleTheAbove/able-graphics-lib"
 
 [target.'cfg(x86_64)'.dependencies]
 bootloader = "0.9.8"
-cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }

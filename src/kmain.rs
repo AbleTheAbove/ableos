@@ -1,8 +1,8 @@
-use crate::{agl, arch::init};
+use crate::agl; //, arch::init};
 #[no_mangle]
 pub extern "C" fn kernel_main() {
     graphics_holder();
-    init::init();
+    // init::init();
     loop {}
 }
 
