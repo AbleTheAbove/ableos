@@ -5,7 +5,6 @@ use core::intrinsics::volatile_store;
 
 pub mod init;
 pub mod mbox;
-
 // raspi2 and raspi3 have peripheral base address 0x3F000000,
 // b ut raspi1 has peripheral base address 0x20000000. Ensure
 // you are using the correct peripheral address for your

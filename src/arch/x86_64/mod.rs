@@ -1,4 +1,6 @@
+mod alloc;
 pub mod init;
+
 use cpuio::outb;
 
 static HELLO: &[u8] = b"Running on x86_64";
