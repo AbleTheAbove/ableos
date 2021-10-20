@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 use core::intrinsics::volatile_load;
 use core::intrinsics::volatile_store;
 

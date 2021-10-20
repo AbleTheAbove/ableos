@@ -9,7 +9,7 @@ pub extern "C" fn kernel_main() {
 fn graphics_holder() {
     let buffer = [[(0, 0, 0); 1440]; 900];
 
-    let graphics_buffer = agl::GraphicsBufferHandle {
+    let _graphics_buffer = agl::GraphicsBufferHandle {
         buffer_pointer: agl::BuffPoint::Single,
         current_buff: buffer,
         double_buff: buffer,
