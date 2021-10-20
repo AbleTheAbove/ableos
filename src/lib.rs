@@ -28,6 +28,8 @@ pub const RELEASE_TYPE: &str = "release";
 // In the future you may need to provide real implementations for
 // these functions.
 
+use able_graphics_lib as agl;
+
 #[no_mangle]
 pub extern "C" fn __aeabi_unwind_cpp_pr0() {}
 
