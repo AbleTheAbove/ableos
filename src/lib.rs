@@ -1,5 +1,5 @@
 #![no_std]
-#![deny(warnings)]
+// #![deny(warnings)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
 #![feature(alloc_error_handler)] // at the top of the file
 
@@ -11,9 +11,12 @@ mod arch;
 #[path = "arch/x86_64/mod.rs"]
 mod arch;
 
+#[macro_use]
+pub extern crate alloc;
+
+pub mod allocator;
 mod kmain;
 mod panic;
-
 use able_graphics_lib as agl;
 
 pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
