@@ -1,0 +1,12 @@
+[package]
+name = "ableos-arm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+panic = "abort"
+
+
+[target.'cfg(x86_64)'.dependencies]
+bootloader = "0.9.8"
