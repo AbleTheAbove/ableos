@@ -17,7 +17,10 @@ pub extern crate alloc;
 pub mod allocator;
 mod kmain;
 mod panic;
-use able_graphics_lib as agl;
+// use able_graphics_lib as agl;
+
+mod experiments;
+pub use experiments::server;
 
 pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
 #[cfg(debug_assertions)]
