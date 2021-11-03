@@ -11,11 +11,18 @@ mod arch;
 #[path = "arch/x86_64/mod.rs"]
 mod arch;
 
+#[cfg(target_arch = "mips")]
+#[path = "arch/ps_portable/mod.rs"]
+mod arch;
+
 #[macro_use]
 pub extern crate alloc;
 
+#[cfg(not(target_arch = "mips"))]
 pub mod allocator;
 mod kmain;
+
+#[cfg(not(target_arch = "mips"))]
 mod panic;
 // use able_graphics_lib as agl;
 
