@@ -9,14 +9,22 @@ fn psp_main() {
     println!("AbleOS booted on PSP");
 
     gl_basic();
+    let mut second = timer_update().seconds;
+
     loop {
         {
-            // time
             let time = timer_update();
-            println!(
-                "{:?}/{:?}/{:?} {:02}:{:02}:{:02} UTC",
-                time.year, time.month, time.day, time.hour, time.minutes, time.seconds
-            );
+            if (second) == time.seconds {
+                if second == 59 {
+                    second = 0;
+                }
+                // time
+                print!(
+                    "{:?}/{:?}/{:?} {:02}:{:02}:{:02} UTC\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                    time.year, time.month, time.day, time.hour, time.minutes, time.seconds
+                );
+                second += 1;
+            }
         }
     }
 }
