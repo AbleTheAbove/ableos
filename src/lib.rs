@@ -16,6 +16,9 @@ mod arch;
 mod arch;
 
 #[macro_use]
+pub mod print;
+
+#[macro_use]
 pub extern crate alloc;
 
 #[cfg(not(target_arch = "mips"))]
@@ -24,6 +27,8 @@ mod kmain;
 
 #[cfg(not(target_arch = "mips"))]
 mod panic;
+
+#[cfg(target_arch = "x86_64")]
 use able_graphics_lib as agl;
 
 mod experiments;

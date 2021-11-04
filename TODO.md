@@ -1,1 +1,2 @@
-Simple interactive "painting" "program"
+- [ ] Simple interactive "painting" "program"
+- [ ] monotty like desktop environment

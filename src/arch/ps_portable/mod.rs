@@ -12,8 +12,10 @@ fn psp_main() {
     let mut second = timer_update().seconds;
 
     loop {
+        /*
         {
             let time = timer_update();
+            // FIXME: this is a little broken
             if (second) == time.seconds {
                 if second == 59 {
                     second = 0;
@@ -26,6 +28,7 @@ fn psp_main() {
                 second += 1;
             }
         }
+        */
     }
 }
 
@@ -36,9 +39,9 @@ use crate::arch::timer::timer_update;
 use core::ffi::c_void;
 
 use psp::{
-    dprint as print, dprintln as println,
     sys::{self, DisplayPixelFormat, GuState, TexturePixelFormat},
     vram_alloc::get_vram_allocator,
     {BUF_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH},
 };
 pub mod init;
+use crate::println;

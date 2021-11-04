@@ -4,6 +4,10 @@ use crate::arch::init;
 pub extern "C" fn kernel_main() {
     // graphics_holder();
     init::init();
+    print!("Initialized");
+
+    char::is_uppercase('a');
+
     loop {}
 }
 
