@@ -1,6 +1,6 @@
 #![no_std]
 #![no_main]
-
+pub mod drivers;
 static mut LIST: psp::Align16<[u32; 0x40000]> = psp::Align16([0; 0x40000]);
 // Create a module named "sample_module" with version 1.0
 psp::module!("ableos", 1, 0);
@@ -8,6 +8,8 @@ psp::module!("ableos", 1, 0);
 fn psp_main() {
     // println!("AbleOS booted on PSP");
     // todo
+
+    println!("{}", crate::time::kilotime::Kilosecond::from_minutes(56));
     println!("{}", crate::experiments::systeminfo::format_system_info());
     gl_basic();
     let mut second = timer_update().seconds;
