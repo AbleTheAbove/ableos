@@ -6,8 +6,6 @@ pub extern "C" fn kernel_main() {
     init::init();
     print!("Initialized");
 
-    char::is_uppercase('a');
-
     loop {}
 }
 

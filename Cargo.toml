@@ -7,23 +7,20 @@ edition = "2021"
 panic = "abort"
 
 
-
 [dependencies]
 spin = "0.5.2"
-# linked_list_allocator = "0.9.0"
-psp = "0.1.5"
-# ruspiro-allocator = "0.4.5"
+linked_list_allocator = "0.9.0"
+
 [dependencies.lazy_static]
 features = ["spin_no_std"]
 version = "1.0"
 
-[target.'cfg(mips)'.dependencies]
+[target.'cfg(target_arch = "mips")'.dependencies]
+psp = "0.1.5"
 
-
-[target.'cfg(x86_64)'.dependencies]
+[target.'cfg(target_arch = "x86_64")'.dependencies]
 bootloader = "0.9.8"
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
-# Conditional deps
 
-# [dependencies.able-graphics-lib]
-# git = "https://github.com/AbleTheAbove/able-graphics-lib"
+[dependencies.able-graphics-lib]
+git = "https://github.com/AbleTheAbove/able-graphics-lib"

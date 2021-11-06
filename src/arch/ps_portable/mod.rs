@@ -6,8 +6,9 @@ static mut LIST: psp::Align16<[u32; 0x40000]> = psp::Align16([0; 0x40000]);
 psp::module!("ableos", 1, 0);
 
 fn psp_main() {
-    println!("AbleOS booted on PSP");
-
+    // println!("AbleOS booted on PSP");
+    // todo
+    println!("{}", crate::experiments::systeminfo::format_system_info());
     gl_basic();
     let mut second = timer_update().seconds;
 
