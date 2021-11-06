@@ -5,10 +5,8 @@ pub extern "C" fn kernel_main() {
     // graphics_holder();
     init::init();
     print!("Initialized");
-
     loop {}
 }
-
 fn graphics_holder() {
     let buffer = [[(0, 0, 0); 1440]; 900];
     /*

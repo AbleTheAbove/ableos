@@ -6,7 +6,6 @@
 #[cfg(target_arch = "arm")]
 #[path = "arch/aarch32/mod.rs"]
 mod arch;
-
 #[cfg(target_arch = "x86_64")]
 #[path = "arch/x86_64/mod.rs"]
 mod arch;
@@ -14,6 +13,8 @@ mod arch;
 #[cfg(target_arch = "mips")]
 #[path = "arch/ps_portable/mod.rs"]
 mod arch;
+
+use arch::drivers::graphics;
 
 #[macro_use]
 pub mod print;
