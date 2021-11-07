@@ -1,12 +1,12 @@
 use super::drivers::vga;
 
-#[macro_use]
-use crate::kprintln;
+use crate::println;
 
 pub fn init() {
     // init_alloc();
     use core::fmt::Write;
-    kprintln!("Hello World{}", "!");
+
+    println!("Hello World{}", "!");
 
     // vga::print_something();
 }
