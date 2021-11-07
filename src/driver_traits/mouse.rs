@@ -1,13 +1,9 @@
-pub enum MouseButton {
+pub enum PS2MouseButton {
     LeftMB,
     RightMB,
 }
-pub struct VectorTwo {
-    pub x: i32,
-    pub y: i32,
-}
 
-pub trait Mouse {
+pub trait PS2Mouse {
     fn movement();
     fn button();
 }
