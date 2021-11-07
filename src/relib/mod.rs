@@ -1,4 +1,4 @@
-mod time;
+pub mod time;
 
 pub struct VectorTwo {
     pub x: i32,
