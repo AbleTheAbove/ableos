@@ -19,7 +19,8 @@ impl core::fmt::Write for Stdout {
     #[cfg(target_arch = "x86_64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         use crate::print;
-        print!("{}", s);
+        // FIXME: causes issues/triple fault
+        // print!("{}", s);
         Ok(())
     }
 
