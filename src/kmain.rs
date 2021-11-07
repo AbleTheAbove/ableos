@@ -1,11 +1,9 @@
 use crate::{
-    agl::Graphics,
-    arch::{drivers::graphics::x86_64GraphicsBuffer as GraphicsBuffer, init},
+    arch::{drivers::graphics::GraphicsBuffer, init},
+    driver_traits::graphics::Graphics,
 };
 #[no_mangle]
 pub extern "C" fn kernel_main() {
-    // graphics_holder();
-
     init::init();
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
@@ -13,6 +11,8 @@ pub extern "C" fn kernel_main() {
     print!("Initialized");
 
     loop {}
+
+    crate::arch::shutdown();
 }
 fn graphics_holder() {
     let buffer = [[(0, 0, 0); 1440]; 900];

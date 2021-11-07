@@ -1,7 +1,8 @@
-use able_graphics_lib::{Graphics, Point, RGB};
+use crate::driver_traits::graphics::{Graphics, Point, RGB};
 use cpuio::{inw, outb, outw};
-pub struct x86_64GraphicsBuffer;
-impl Graphics for x86_64GraphicsBuffer {
+
+pub struct GraphicsBuffer;
+impl Graphics for GraphicsBuffer {
     fn put_line(coords_start: Point, coords_end: Point, thickness: u32, color: RGB) {
         todo!()
     }
@@ -10,6 +11,9 @@ impl Graphics for x86_64GraphicsBuffer {
     }
     fn put_circle(coords: Point, radius: u32) {
         todo!()
+    }
+    fn put_triangle(coords_1: Point, coords_2: Point, coords_3: Point, thickness: u32, color: RGB) {
+        todo!();
     }
     fn put_pixel(coords: Point, color: RGB) {
         todo!()

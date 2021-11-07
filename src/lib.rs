@@ -29,8 +29,7 @@ mod kmain;
 #[cfg(not(target_arch = "mips"))]
 mod panic;
 
-#[cfg(target_arch = "x86_64")]
-use able_graphics_lib as agl;
+mod driver_traits;
 
 mod experiments;
 pub use experiments::server;

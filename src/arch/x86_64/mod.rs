@@ -7,3 +7,5 @@ pub extern "C" fn _start() -> ! {
     crate::kmain::kernel_main();
     loop {}
 }
+
+pub fn shutdown() {}
