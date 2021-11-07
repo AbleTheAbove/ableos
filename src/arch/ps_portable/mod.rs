@@ -1,5 +1,6 @@
 #![no_std]
 #![no_main]
+pub const ARCH: &'static str = "mipsr4000";
 pub mod drivers;
 static mut LIST: psp::Align16<[u32; 0x40000]> = psp::Align16([0; 0x40000]);
 // Create a module named "sample_module" with version 1.0

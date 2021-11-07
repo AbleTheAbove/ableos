@@ -18,11 +18,12 @@ Uptime: 0:0:0
 Packages: 0
 Shell: Ashell
 Gpu: MIPS32 R4000 R4k
-Cpu: MIPS32 R4000 R4k
+Cpu: {}
 Memory: {}
 ",
         crate::experiments::BANNER,
         crate::experiments::kinfo::KINFO.kernel_version,
+        crate::arch::ARCH,
         crate::experiments::kinfo::KINFO.memory
     );
     return x;
