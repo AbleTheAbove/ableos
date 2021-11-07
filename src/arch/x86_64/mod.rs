@@ -1,6 +1,7 @@
 pub const ARCH: &'static str = "x86_64";
 pub mod drivers;
 pub mod init;
+pub mod interrupts;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {

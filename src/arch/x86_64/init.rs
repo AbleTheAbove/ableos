@@ -1,5 +1,4 @@
 use super::drivers::vga;
-pub mod interrupts;
 
 use crate::println;
 
