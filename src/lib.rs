@@ -39,5 +39,4 @@ pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
 pub const RELEASE_TYPE: &str = "debug";
 #[cfg(not(debug_assertions))]
 /// A constant to check if the kernel is in release mode
-pub const RELEASE_TYPE: &str = "release";
-mod time;
+use relib::time;

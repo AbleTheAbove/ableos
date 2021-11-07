@@ -1,5 +1,6 @@
 use core::fmt;
 pub mod kilotime;
+
 pub struct Time {
     pub year: u16,
     pub month: u16,
@@ -9,7 +10,6 @@ pub struct Time {
     pub seconds: u16,
     pub microseconds: u32,
 }
-
 impl fmt::Display for Time {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
