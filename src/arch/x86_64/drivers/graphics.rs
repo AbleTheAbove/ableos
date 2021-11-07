@@ -28,16 +28,7 @@ impl Graphics for GraphicsBuffer {
         }
     }
     fn show_cursor() {}
-    fn draw() {
-        let vga_buffer = 0xb8000 as *mut u8;
-        static HELLO: &[u8] = b"Running on x84_64";
-        for (i, &byte) in HELLO.iter().enumerate() {
-            unsafe {
-                *vga_buffer.offset(i as isize * 2) = byte;
-                *vga_buffer.offset(i as isize * 2 + 1) = 0xa;
-            }
-        }
-    }
+    fn draw() {}
     fn clear() {
         todo!()
     }

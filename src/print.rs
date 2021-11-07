@@ -29,6 +29,7 @@ impl core::fmt::Write for Stdout {
     }
 }
 #[macro_export]
+
 macro_rules! print {
     () => {
         ::core::writeln!($crate::print::Stdout, "")

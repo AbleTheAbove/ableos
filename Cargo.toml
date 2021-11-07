@@ -19,5 +19,6 @@ version = "1.0"
 psp = "0.1.5"
 
 [target.'cfg(target_arch = "x86_64")'.dependencies]
+volatile = "0.2.6"
 bootloader = "0.9.8"
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
