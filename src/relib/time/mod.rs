@@ -1,6 +1,3 @@
-use core::fmt;
-pub mod kilotime;
-
 pub struct Time {
     pub year: u16,
     pub month: u16,
@@ -19,3 +16,6 @@ impl fmt::Display for Time {
         )
     }
 }
+
+pub mod kilotime;
+use core::fmt;
