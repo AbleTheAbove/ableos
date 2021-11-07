@@ -7,8 +7,8 @@ impl core::fmt::Display for SystemMemory {
         write!(f, "{} Bytes / {} Bytes", self.used, self.total)
     }
 }
-
-pub fn format_system_info() -> alloc::string::String {
+/*
+pub fn format_system_info() -> core::string::String {
     let x = format!(
         "{}
 OS: AbleOS
@@ -28,3 +28,4 @@ Memory: {}
     );
     return x;
 }
+*/

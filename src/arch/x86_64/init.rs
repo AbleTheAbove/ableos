@@ -1,4 +1,3 @@
-use super::alloc::init_alloc;
 use super::drivers::vga;
 
 #[macro_use]

@@ -1,7 +1,7 @@
 #![no_std]
 // #![deny(warnings)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
-#![feature(alloc_error_handler)] // at the top of the file
+// #![feature(alloc_error_handler)] // at the top of the file
 
 #[cfg(target_arch = "arm")]
 #[path = "arch/aarch32/mod.rs"]
@@ -19,11 +19,8 @@ use arch::drivers::graphics;
 #[macro_use]
 pub mod print;
 
-#[macro_use]
-pub extern crate alloc;
-
 #[cfg(not(target_arch = "mips"))]
-pub mod allocator;
+// pub mod allocator;
 mod kmain;
 
 #[cfg(not(target_arch = "mips"))]
