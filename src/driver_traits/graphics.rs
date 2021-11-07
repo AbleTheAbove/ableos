@@ -4,7 +4,18 @@ pub enum GModes {
 }
 
 pub type GCoord = usize;
-pub type RGB = (u32, u32, u32);
+pub struct RGB {
+    pub r: u32,
+    pub g: u32,
+    pub b: u32,
+}
+
+impl RGB {
+    fn to_vga_color() {
+        todo!();
+    }
+}
+
 pub type RefreshRate = u8;
 pub const REFRESH_RATE: u8 = 60;
 
