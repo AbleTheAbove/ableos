@@ -1,5 +1,6 @@
 #![no_std]
 // #![deny(warnings)]
+#![feature(abi_x86_interrupt)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
 // #![feature(alloc_error_handler)] // at the top of the file
 
