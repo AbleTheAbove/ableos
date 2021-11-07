@@ -21,6 +21,3 @@ psp = "0.1.5"
 [target.'cfg(target_arch = "x86_64")'.dependencies]
 bootloader = "0.9.8"
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
-
-[dependencies.able-graphics-lib]
-git = "https://github.com/AbleTheAbove/able-graphics-lib"

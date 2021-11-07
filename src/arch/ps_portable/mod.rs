@@ -36,6 +36,8 @@ fn psp_main() {
     }
 }
 
+pub fn shutdown() {}
+
 mod simple_graphics;
 use simple_graphics::gl_basic;
 mod timer;

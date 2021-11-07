@@ -39,3 +39,5 @@ pub fn write(msg: &str) {
         writec(c as u8)
     }
 }
+
+pub fn shutdown() {}
