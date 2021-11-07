@@ -1,10 +1,17 @@
-use crate::arch::init;
-
+use crate::{
+    agl::Graphics,
+    arch::{drivers::graphics::x86_64GraphicsBuffer as GraphicsBuffer, init},
+};
 #[no_mangle]
 pub extern "C" fn kernel_main() {
     // graphics_holder();
+
     init::init();
+    GraphicsBuffer::draw();
+    GraphicsBuffer::hide_cursor();
+    // GraphicsBuffer::show_cursor();
     print!("Initialized");
+
     loop {}
 }
 fn graphics_holder() {

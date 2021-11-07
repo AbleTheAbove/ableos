@@ -9,9 +9,9 @@ fn psp_main() {
     // println!("AbleOS booted on PSP");
     // todo
 
-    println!("{}", crate::time::kilotime::Kilosecond::from_minutes(56));
-    println!("{}", crate::experiments::systeminfo::format_system_info());
-    gl_basic();
+    // println!("{}", crate::experiments::systeminfo::format_system_info());
+    // gl_basic();
+    println!("{}", crate::time::kilotime::Kilosecond::from_sec(23944));
     let mut second = timer_update().seconds;
 
     loop {

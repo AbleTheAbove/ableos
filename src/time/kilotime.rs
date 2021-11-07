@@ -1,5 +1,5 @@
+use super::Time;
 use core::fmt::{Display, Error, Formatter};
-
 #[derive(Debug, Clone, Copy)]
 #[repr(transparent)]
 pub struct Kilosecond(usize);
@@ -7,15 +7,11 @@ pub struct Kilosecond(usize);
 impl Display for Kilosecond {
     fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
         let mut reg = self.0;
-        // let mut buf = String::new();
-        let mut buf: [u8; 6] = [0, 0, b'.', 0, 0, 0];
+        let mut buf = [0u8, 0, 0, 0, 0];
         let mut n = 0;
-        while n < 6 {
-            if n == 4 {
-                n = 5
-            }
+        while n < 8 {
             if n > 2 {
-                buf[6 - n] = match reg % 10 {
+                buf[7 - n] = match reg % 10 {
                     0 => b'0',
                     1 => b'1',
                     2 => b'2',
@@ -32,9 +28,13 @@ impl Display for Kilosecond {
             reg /= 10;
             n += 1;
         }
-
-        buf[3] = b'.';
-        write![f, "{:?}", buf]
+        for (n, b) in buf.iter().enumerate() {
+            write![f, "{}", *b as char]?;
+            if n == 1 {
+                write![f, "."]?;
+            }
+        }
+        Ok(())
     }
 }
 
@@ -49,6 +49,12 @@ impl core::ops::Sub for Kilosecond {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
         Self(self.0 - rhs.0)
+    }
+}
+
+impl From<Time> for Kilosecond {
+    fn from(t: Time) -> Self {
+        Self((t.hour as usize * 3600 + t.minutes as usize * 60 + t.seconds as usize) * 1000)
     }
 }
 

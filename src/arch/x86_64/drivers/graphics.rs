@@ -1,5 +1,5 @@
 use able_graphics_lib::{Graphics, Point, RGB};
-
+use cpuio::{inw, outb, outw};
 pub struct x86_64GraphicsBuffer;
 impl Graphics for x86_64GraphicsBuffer {
     fn put_line(coords_start: Point, coords_end: Point, thickness: u32, color: RGB) {
@@ -18,13 +18,21 @@ impl Graphics for x86_64GraphicsBuffer {
         todo!()
     }
     fn hide_cursor() {
-        todo!()
+        unsafe {
+            outw(0x0A, 0x3D4);
+            outw(0x20, 0x3D5);
+        }
     }
-    fn show_cursor() {
-        todo!()
-    }
+    fn show_cursor() {}
     fn draw() {
-        todo!()
+        let vga_buffer = 0xb8000 as *mut u8;
+        static HELLO: &[u8] = b"Running on x84_64";
+        for (i, &byte) in HELLO.iter().enumerate() {
+            unsafe {
+                *vga_buffer.offset(i as isize * 2) = byte;
+                *vga_buffer.offset(i as isize * 2 + 1) = 0xa;
+            }
+        }
     }
     fn clear() {
         todo!()
