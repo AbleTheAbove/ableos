@@ -9,9 +9,10 @@ pub extern "C" fn kernel_main() {
    GraphicsBuffer::hide_cursor();
    GraphicsBuffer::show_cursor();
    print!("Initialized");
-   let mut x = unsafe {
-      *(0xDEADBEEF as *mut u64)
-   };
+   
+   unsafe {
+      *(0xDEADBEEF as *mut u64) = 42;
+   }
 
    loop {}
 
