@@ -10,7 +10,15 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::show_cursor();
     println!("Initialized");
 
+    stack_overflow();
     loop {}
 
     crate::arch::shutdown();
+}
+
+#[no_mangle]
+#[allow(unconditional_recursion)]
+pub extern "C" fn stack_overflow() -> u8 {
+   stack_overflow();
+   69
 }

@@ -1,9 +1,10 @@
 use super::drivers::vga;
-use super::interrupts;
+use super::{gdt, interrupts};
 
 use crate::println;
 
 pub fn init() {
-    interrupts::init_idt();
-    println!("Hello World{}", "!");
+   gdt::init();
+   interrupts::init_idt();
+   println!("Hello World{}", "!");
 }
