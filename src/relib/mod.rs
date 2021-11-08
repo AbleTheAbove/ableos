@@ -1,3 +1,4 @@
+pub mod math;
 pub mod time;
 
 pub struct VectorTwo {
