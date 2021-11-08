@@ -3,9 +3,10 @@ use core::fmt::Arguments;
 use core::fmt::Error;
 
 impl Stdout {
-    pub fn write_fmt(&mut self, arg: Arguments<'_>) /*-> Result<(), Error> */{
+    pub fn write_fmt(&mut self, arg: Arguments<'_>) /*-> Result<(), Error> */
+    {
         core::fmt::Write::write_fmt(self, arg);
-      //   Ok(())
+        //   Ok(())
     }
 }
 impl core::fmt::Write for Stdout {
@@ -33,7 +34,6 @@ impl core::fmt::Write for Stdout {
 }
 
 #[macro_export]
-
 macro_rules! print {
     () => {
         ::core::writeln!($crate::print::Stdout, "")
