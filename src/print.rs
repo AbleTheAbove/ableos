@@ -53,3 +53,12 @@ macro_rules! println {
       // panic![];
     };
 }
+
+macro_rules! clear {
+    () => {
+        for _ in 0..25 {
+            // $crate::print::println!();
+            ::core::writeln!($crate::print::Stdout, "")
+        }
+    };
+}

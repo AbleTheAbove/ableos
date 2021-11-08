@@ -18,7 +18,11 @@ pub extern "C" fn kernel_main() {
     let mut rand = PRand::new();
     let seed = rand.rand();
     rand.seed(seed);
-    println!("{:?}", rand.rand());
+    for _ in 0..100000000 {
+        // println!("{:?}", rand.rand());
+        // println!("{:?}", rand.rand());
+        // clear!();
+    }
     println!("{:?}", rand.rand());
 
     loop {}
