@@ -11,7 +11,7 @@ panic = "abort"
 test-args = [
     "-device", "isa-debug-exit,iobase=0xf4,iosize=0x04", "-serial", "stdio"
 ]
-
+run-args=["-serial", "stdio"]
 
 [dependencies]
 spin = "0.5.2"
