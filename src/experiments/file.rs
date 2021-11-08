@@ -2,6 +2,7 @@ struct Permissions {
     write_files: bool,
     read_files: bool,
     execute_files: bool,
+    // Every other user is part of global
     global_write_files: bool,
     global_read_files: bool,
     global_execute_files: bool,
