@@ -10,12 +10,6 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::show_cursor();
     println!("Initialized");
 
-    fn h() {
-        println!("hi");
-        h()
-    }
-    h();
-
     loop {}
 
     crate::arch::shutdown();
