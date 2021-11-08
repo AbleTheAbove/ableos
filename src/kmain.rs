@@ -18,15 +18,11 @@ pub extern "C" fn kernel_main() {
     let mut rand = PRand::new();
     let seed = rand.rand();
     rand.seed(seed);
-    for _ in 0..100000000 {
-        // println!("{:?}", rand.rand());
-        // println!("{:?}", rand.rand());
-        // clear!();
-    }
+
     println!("{:?}", rand.rand());
-    
-    stack_overflow();
-    
+
+    // stack_overflow();
+
     loop {}
 
     crate::arch::shutdown();
@@ -35,6 +31,6 @@ pub extern "C" fn kernel_main() {
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
-   stack_overflow();
-   69
+    stack_overflow();
+    69
 }

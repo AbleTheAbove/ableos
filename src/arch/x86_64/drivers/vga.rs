@@ -116,7 +116,9 @@ lazy_static! {
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
-
+pub fn set_vga_color() {
+    WRITER.lock().color_code = ColorCode::new(Color::Green, Color::Black);
+}
 use core::fmt;
 use lazy_static::lazy_static;
 use spin::Mutex;
