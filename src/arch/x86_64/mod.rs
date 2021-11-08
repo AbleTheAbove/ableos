@@ -4,6 +4,7 @@ use x86_64::instructions::hlt;
 pub mod drivers;
 pub mod init;
 pub mod interrupts;
+pub mod gdt;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {

@@ -24,8 +24,17 @@ pub extern "C" fn kernel_main() {
         // clear!();
     }
     println!("{:?}", rand.rand());
-
+    
+    stack_overflow();
+    
     loop {}
 
     crate::arch::shutdown();
+}
+
+#[no_mangle]
+#[allow(unconditional_recursion)]
+pub extern "C" fn stack_overflow() -> u8 {
+   stack_overflow();
+   69
 }
