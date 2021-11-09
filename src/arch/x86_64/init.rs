@@ -1,9 +1,15 @@
-use super::{drivers::vga, interrupts};
+use super::drivers::vga;
+use super::{gdt, interrupts};
+use crate::{println, serial_println};
 
-use crate::println;
 use core::fmt::Write;
 
 pub fn init() {
+    gdt::init();
     interrupts::init_idt();
-    println!("Hello World{}", "!");
+    unsafe { interrupts::PICS.lock().initialize() };
+    // x86_64::instructions::interrupts::enable();
+
+    println!("Initialized");
+    serial_println!("Initialized");
 }

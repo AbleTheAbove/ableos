@@ -3,9 +3,10 @@ use core::fmt::Arguments;
 use core::fmt::Error;
 
 impl Stdout {
-    pub fn write_fmt(&mut self, arg: Arguments<'_>) /*-> Result<(), Error> */{
+    pub fn write_fmt(&mut self, arg: Arguments<'_>) /*-> Result<(), Error> */
+    {
         core::fmt::Write::write_fmt(self, arg);
-      //   Ok(())
+        //   Ok(())
     }
 }
 impl core::fmt::Write for Stdout {
@@ -19,7 +20,7 @@ impl core::fmt::Write for Stdout {
     #[cfg(target_arch = "x86_64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         use crate::kprint;
-        // FIXME: causes issues/triple fault
+        // FIXME: causes issues
         kprint!("{}", s);
         Ok(())
     }
@@ -31,8 +32,8 @@ impl core::fmt::Write for Stdout {
         Ok(())
     }
 }
-#[macro_export]
 
+#[macro_export]
 macro_rules! print {
     () => {
         ::core::writeln!($crate::print::Stdout, "")
@@ -50,5 +51,14 @@ macro_rules! println {
     ($($tt:tt)*) => {
         ::core::writeln!($crate::print::Stdout, $($tt)*)
       // panic![];
+    };
+}
+
+macro_rules! clear {
+    () => {
+        for _ in 0..25 {
+            // $crate::print::println!();
+            ::core::writeln!($crate::print::Stdout, "")
+        }
     };
 }
