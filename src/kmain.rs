@@ -19,7 +19,7 @@ pub extern "C" fn kernel_main() {
     let seed = rand.rand();
     rand.seed(seed);
 
-    println!("{:?}", rand.rand());
+    println!("Psuedo Random Number generated {:?}", rand.rand());
 
     // stack_overflow();
 
