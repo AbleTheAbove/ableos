@@ -3,6 +3,7 @@ pub const ARCH: &'static str = "aarch32";
 use core::intrinsics::volatile_load;
 use core::intrinsics::volatile_store;
 
+pub mod drivers;
 pub mod init;
 pub mod mbox;
 

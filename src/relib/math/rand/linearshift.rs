@@ -23,10 +23,11 @@ impl RNG for LinearShiftRegister {
         let multitude: u64 = x123.wrapping_mul(x) / x;
         let mult = shifted.wrapping_mul(multitude);
         let seeded_bit = seed / mult;
-        if true {
-            crate::serial_println!("Entropy {}", entropy);
-            crate::serial_println!("Multitude {}", multitude);
-            crate::serial_println!("Seeded Bit {}", seeded_bit);
+
+        if false {
+            // crate::serial_println!("Entropy {}", entropy);
+            // crate::serial_println!("Multitude {}", multitude);
+            // crate::serial_println!("Seeded Bit {}", seeded_bit);
         }
         for x in 0..seeded_bit {
             self.rand();
