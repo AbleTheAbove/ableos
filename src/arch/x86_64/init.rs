@@ -1,11 +1,8 @@
-
 use super::drivers::vga;
 use super::{gdt, interrupts};
 use crate::{println, serial_println};
 
-use crate::println;
 use core::fmt::Write;
-
 
 pub fn init() {
     gdt::init();
