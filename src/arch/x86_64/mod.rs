@@ -10,6 +10,8 @@ pub mod interrupts;
 pub extern "C" fn _start() -> ! {
    crate::kmain::kernel_main();
    sloop();
+
+
 }
 
 pub fn shutdown() -> ! {
@@ -19,4 +21,11 @@ pub fn sloop() -> ! {
    loop {
       hlt();
    }
+}
+
+#[cfg(test)]
+pub fn test_runner(tests: &[&dyn Fn()]) {
+    for test in tests {
+        test();
+    }
 }

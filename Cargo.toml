@@ -7,6 +7,11 @@ edition = "2021"
 [profile.release]
 panic = "abort"
 
+[package.metadata.bootimage]
+test-args = [
+    "-device", "isa-debug-exit,iobase=0xf4,iosize=0x04", "-serial", "stdio"
+]
+run-args=["-serial", "stdio"]
 
 [dependencies]
 spin = "0.5.2"
@@ -23,5 +28,6 @@ psp = "0.1.5"
 volatile = "0.2.6"
 bootloader = "0.9.8"
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
-x86_64 = "*"
+uart_16550 = "0.2.0"
 pic8259 = "0.10.1"
+

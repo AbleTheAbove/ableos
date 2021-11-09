@@ -1,8 +1,8 @@
 #![allow(warnings)]
 pub const ARCH: &'static str = "aarch32";
-use core::intrinsics::volatile_load;
-use core::intrinsics::volatile_store;
+use core::intrinsics::{volatile_load, volatile_store};
 
+pub mod drivers;
 pub mod init;
 pub mod mbox;
 
@@ -16,7 +16,6 @@ const UART_FR: u32 = 0x3F201018;
 pub fn mmio_write(reg: u32, val: u32) {
     unsafe { volatile_store(reg as *mut u32, val) }
 }
-
 pub fn mmio_read(reg: u32) -> u32 {
     unsafe { volatile_load(reg as *const u32) }
 }
@@ -39,5 +38,4 @@ pub fn write(msg: &str) {
         writec(c as u8)
     }
 }
-
 pub fn shutdown() {}

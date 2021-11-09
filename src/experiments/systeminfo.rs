@@ -1,3 +1,5 @@
+// Can be standardized
+// NOTE: move the file to the src/ dir
 pub struct SystemMemory {
     pub used: u64,
     pub total: u64,
@@ -7,6 +9,7 @@ impl core::fmt::Display for SystemMemory {
         write!(f, "{} Bytes / {} Bytes", self.used, self.total)
     }
 }
+
 /*
 pub fn format_system_info() -> core::string::String {
     let x = format!(

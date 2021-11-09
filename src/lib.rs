@@ -3,6 +3,9 @@
 #![feature(abi_x86_interrupt)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
 // #![feature(alloc_error_handler)] // at the top of the file
+#![reexport_test_harness_main = "test_main"]
+#![feature(custom_test_frameworks)]
+#![test_runner(crate::arch::test_runner)]
 
 #[cfg(target_arch = "arm")]
 #[path = "arch/aarch32/mod.rs"]
@@ -40,4 +43,5 @@ pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
 pub const RELEASE_TYPE: &str = "debug";
 #[cfg(not(debug_assertions))]
 /// A constant to check if the kernel is in release mode
+pub const RELEASE_TYPE: &str = "release";
 use relib::time;
