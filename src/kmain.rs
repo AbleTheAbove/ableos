@@ -50,5 +50,4 @@ pub fn seed_rng() -> PRand {
     println!("Seeded PRNG");
     // serial_println!("Seeded PRNG");
     rand
-
 }

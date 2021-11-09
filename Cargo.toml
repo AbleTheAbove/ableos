@@ -28,6 +28,6 @@ psp = "0.1.5"
 volatile = "0.2.6"
 bootloader = "0.9.8"
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
+x86_64 = "*"
 uart_16550 = "0.2.0"
 pic8259 = "0.10.1"
-
