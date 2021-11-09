@@ -21,8 +21,13 @@ pub extern "C" fn kernel_main() {
 
     println!("Psuedo Random Number generated {:?}", rand.rand());
 
+   //  unsafe {+
+   //     *(0xabebdeef as *mut u64) = 69;
+   //  }
+
     // stack_overflow();
 
+    println!("It did not crash!");
     loop {}
 
     crate::arch::shutdown();
