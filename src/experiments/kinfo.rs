@@ -1,15 +1,18 @@
+// Can be standardized
+
+// NOTE: Move this to relib
 pub struct SemanticVersion {
     pub major: u8,
     pub minor: u8,
     pub patch: u8,
 }
-
 impl core::fmt::Display for SemanticVersion {
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         write!(f, "v{}.{}.{}", self.major, self.minor, self.patch)
     }
 }
 
+// NOTE: Move to somewhere else
 lazy_static! {
     pub static ref KINFO: KernelInfo = KernelInfo {
         kernel_version: SemanticVersion {
