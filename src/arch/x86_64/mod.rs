@@ -8,17 +8,19 @@ pub mod interrupts;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    crate::kmain::kernel_main();
+   crate::kmain::kernel_main();
+   sloop();
 
-    sloop();
-    loop {}
+
 }
 
-pub fn shutdown() {}
-pub fn sloop() {
-    loop {
-        hlt();
-    }
+pub fn shutdown() -> ! {
+   sloop();
+}
+pub fn sloop() -> ! {
+   loop {
+      hlt();
+   }
 }
 
 #[cfg(test)]

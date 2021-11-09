@@ -1,8 +1,8 @@
-use crate::println;
+use crate::{arch::sloop, kprintln};
 use core::{intrinsics::abort, panic::PanicInfo};
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    println!("{}", info);
+   kprintln!("{}", info);
 
-    loop {}
+   sloop()
 }
