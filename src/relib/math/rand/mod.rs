@@ -1,5 +1,7 @@
+pub mod linearshift;
 pub mod prand;
-pub mod wichmanhillrand;
+pub mod wichmanhillrand; // FIXEME: Reimplement
+
 pub trait RNG {
     fn new() -> Self;
     fn rand(&mut self) -> u64;

@@ -1,7 +1,7 @@
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
-    relib::math::rand::{prand::PRand, RNG},
+    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RNG},
     serial_print, serial_println,
 };
 
@@ -21,12 +21,12 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::show_cursor();
     println!("Initialized");
     serial_println!("Initialized");
-    let mut rand = PRand::new();
+    let mut rand = LinearShiftRegister::new();
     let seed = rand.rand();
     rand.seed(seed);
+    println!("{:?}", rand.rand());
     for _ in 0..1000 {
-        // println!("{:?}", rand.rand());
-        // println!("{:?}", rand.rand());
+        println!("{:?}", rand.rand());
         // println!("{:?}", rand.rand());
         // clear!();
     }
