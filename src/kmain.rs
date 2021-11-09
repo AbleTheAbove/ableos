@@ -1,6 +1,6 @@
 use crate::{
-    arch::{drivers::graphics::GraphicsBuffer, init},
-    driver_traits::graphics::Graphics,
+   arch::{drivers::graphics::GraphicsBuffer, init},
+   driver_traits::graphics::Graphics,
 };
 
 use crate::relib::math::rand::prand::PRand;
@@ -8,34 +8,33 @@ use crate::relib::math::rand::prand::PRand;
 use crate::relib::math::rand::RNG;
 #[no_mangle]
 pub extern "C" fn kernel_main() {
-    init::init();
+   init::init();
 
-    GraphicsBuffer::draw();
-    GraphicsBuffer::hide_cursor();
-    GraphicsBuffer::show_cursor();
-    println!("Initialized");
+   GraphicsBuffer::draw();
+   GraphicsBuffer::hide_cursor();
+   GraphicsBuffer::show_cursor();
+   println!("Initialized");
 
-    let mut rand = PRand::new();
-    let seed = rand.rand();
-    rand.seed(seed);
+   let mut rand = PRand::new();
+   let seed = rand.rand();
+   rand.seed(seed);
 
-    println!("Psuedo Random Number generated {:?}", rand.rand());
+   println!("Psuedo Random Number generated {:?}", rand.rand());
 
    //  unsafe {+
    //     *(0xabebdeef as *mut u64) = 69;
    //  }
 
-    // stack_overflow();
+   // stack_overflow();
 
-    println!("It did not crash!");
-    loop {}
+   println!("It did not crash!");
 
-    crate::arch::shutdown();
+   crate::arch::shutdown();
 }
 
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
-    stack_overflow();
-    69
+   stack_overflow();
+   69
 }

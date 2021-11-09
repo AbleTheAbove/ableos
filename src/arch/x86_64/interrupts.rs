@@ -15,6 +15,7 @@ pub static PICS: spin::Mutex<ChainedPics> =
 #[repr(u8)]
 pub enum InterruptIndex {
    Timer = PIC_1_OFFSET,
+   Keyboard,
 }
 
 impl InterruptIndex {
@@ -40,7 +41,7 @@ lazy_static! {
               .set_stack_index(gdt::DOUBLE_FAULT_IST_INDEX); // new
       }
       idt[InterruptIndex::Timer.as_usize()].set_handler_fn(timer_interrupt_handler);
-
+      idt[InterruptIndex::Keyboard.as_usize()] .set_handler_fn(keyboard_interrupt_handler);
       idt
     };
 }
@@ -61,7 +62,19 @@ extern "x86-interrupt" fn timer_interrupt_handler(_stack_frame: InterruptStackFr
    print!(".");
 
    unsafe {
-       PICS.lock()
-           .notify_end_of_interrupt(InterruptIndex::Timer.as_u8());
+      PICS
+         .lock()
+         .notify_end_of_interrupt(InterruptIndex::Timer.as_u8());
    }
+}
+
+extern "x86-interrupt" fn keyboard_interrupt_handler(
+    _stack_frame: InterruptStackFrame)
+{
+    print!("k");
+
+    unsafe {
+        PICS.lock()
+            .notify_end_of_interrupt(InterruptIndex::Keyboard.as_u8());
+    }
 }
