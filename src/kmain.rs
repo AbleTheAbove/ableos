@@ -1,9 +1,12 @@
 use crate::{
+   arch::{drivers::graphics::GraphicsBuffer, init},
+   driver_traits::graphics::Graphics,
     arch::init,
     driver_traits::{graphics::Graphics, serial::Serial},
     // serial_print, serial_println,
     graphics::GraphicsBuffer,
     relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RNG},
+
 };
 
 #[no_mangle]
@@ -15,6 +18,30 @@ pub extern "C" fn stack_overflow() -> u8 {
 
 #[no_mangle]
 pub extern "C" fn kernel_main() {
+   init::init();
+
+   GraphicsBuffer::draw();
+   GraphicsBuffer::hide_cursor();
+   GraphicsBuffer::show_cursor();
+   println!("Initialized");
+
+   let mut rand = PRand::new();
+   let seed = rand.rand();
+   rand.seed(seed);
+
+   println!("Psuedo Random Number generated {:?}", rand.rand());
+
+   //  unsafe {+
+   //     *(0xabebdeef as *mut u64) = 69;
+   //  }
+
+   // stack_overflow();
+
+   println!("It did not crash!");
+
+   crate::arch::shutdown();
+}
+
     init::init();
 
     GraphicsBuffer::draw();
