@@ -1,14 +1,9 @@
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
-    serial_println,
+    relib::math::rand::{prand::PRand, RNG},
+    serial_print, serial_println,
 };
-
-use crate::relib::math::rand::prand::PRand;
-// use crate::relib::math::rand::wichmanhillrand::WichmannHillRand;
-use crate::serial_print;
-
-use crate::relib::math::rand::RNG;
 
 #[no_mangle]
 #[allow(unconditional_recursion)]
@@ -25,17 +20,17 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
     println!("Initialized");
-    serial_print!("Initialized");
+    serial_println!("Initialized");
     let mut rand = PRand::new();
     let seed = rand.rand();
     rand.seed(seed);
     for _ in 0..1000 {
         // println!("{:?}", rand.rand());
         // println!("{:?}", rand.rand());
+        // println!("{:?}", rand.rand());
         // clear!();
-        println!("{:?}", rand.rand());
     }
-    serial_println!["Yooooo"];
+    // serial_println!["Yooooo"];
 
     // stack_overflow();
 
