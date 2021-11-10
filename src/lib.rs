@@ -3,7 +3,6 @@
 #![feature(abi_x86_interrupt)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
 // #![feature(alloc_error_handler)] // at the top of the file
-
 #![reexport_test_harness_main = "test_main"]
 #![feature(custom_test_frameworks)]
 #![test_runner(crate::arch::test_runner)]

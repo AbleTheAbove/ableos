@@ -7,3 +7,4 @@ pub trait RNG {
     fn rand(&mut self) -> u64;
     fn seed(&mut self, seed: u64);
 }
+pub struct Random {}

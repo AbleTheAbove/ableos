@@ -1,6 +1,6 @@
 pub struct Entropy {
     // Everytime entropy is used decrement bits count
-    bits_count: u8,
+    bits_count: u16,
     pool: [u8; 128],
 }
 impl Entropy {
