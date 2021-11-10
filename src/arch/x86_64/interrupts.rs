@@ -11,6 +11,7 @@ pub const PIC_2_OFFSET: u8 = PIC_1_OFFSET + 8;
 pub static PICS: spin::Mutex<ChainedPics> =
    spin::Mutex::new(unsafe { ChainedPics::new(PIC_1_OFFSET, PIC_2_OFFSET) });
 
+/// Interrupt offsets.
 #[derive(Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum InterruptIndex {
@@ -59,7 +60,7 @@ extern "x86-interrupt" fn double_fault_handler(
 }
 
 extern "x86-interrupt" fn timer_interrupt_handler(_stack_frame: InterruptStackFrame) {
-   print!(".");
+   // print!(".");
 
    unsafe {
       PICS
@@ -68,13 +69,16 @@ extern "x86-interrupt" fn timer_interrupt_handler(_stack_frame: InterruptStackFr
    }
 }
 
-extern "x86-interrupt" fn keyboard_interrupt_handler(
-    _stack_frame: InterruptStackFrame)
-{
-    print!("k");
+extern "x86-interrupt" fn keyboard_interrupt_handler(_stack_frame: InterruptStackFrame) {
+   use x86_64::instructions::port::Port;
+   
+   let mut port = Port::new(0x60);
+   let scancode: u8 = unsafe { port.read() };
+   print!("{}", scancode);
 
-    unsafe {
-        PICS.lock()
-            .notify_end_of_interrupt(InterruptIndex::Keyboard.as_u8());
-    }
+   unsafe {
+      PICS
+         .lock()
+         .notify_end_of_interrupt(InterruptIndex::Keyboard.as_u8());
+   }
 }
