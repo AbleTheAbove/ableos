@@ -231,7 +231,8 @@ int initAcpi(void)
                   if ((*(S5Addr - 1) == 0x08 || (*(S5Addr - 2) == 0x08 && *(S5Addr - 1) == '\\')) && *(S5Addr + 4) == 0x12)
                   {
                      S5Addr += 5;
-                     S5Addr += ((*S5Addr & 0xC0) >> 6) + 2; // calculate PkgLength size
+                     // calculate PkgLength size
+                     S5Addr += ((*S5Addr &0xC0)>>6) +2; 
 
                      if (*S5Addr == 0x0A)
                         S5Addr++; // skip byteprefix
