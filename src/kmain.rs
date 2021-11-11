@@ -1,8 +1,8 @@
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
-    // serial_print, serial_println,
     relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RNG},
+    serial_print, serial_println,
 };
 
 #[no_mangle]
@@ -22,7 +22,7 @@ pub extern "C" fn kernel_main() {
     {
         let mut prng = seed_rng();
         prng.rand();
-        println!("{}", prng.rand());
+        serial_println!("{}", prng.rand());
     }
 
     {
@@ -42,16 +42,27 @@ pub extern "C" fn kernel_main() {
 
 pub fn seed_rng() -> PRand {
     println!("Seeding PRNG");
+
+    let mut data = TIME.lock();
     // serial_println!("Seeding PRNG");
     let mut rand = PRand::new();
     let seed = rand.rand();
-    rand.seed(seed);
+    rand.seed(*data);
     println!("Seeded PRNG");
     // serial_println!("Seeded PRNG");
     rand
 }
+use lazy_static::lazy_static;
+
+lazy_static! {
+    pub static ref TIME: spin::Mutex<u64> = spin::Mutex::new(0);
+}
 
 /// called by arch specific timers to tick up all kernel related functions
 pub fn tick() {
-    // print!(".");
+    // TIME.lock().0 += 1;
+
+    let mut data = TIME.lock();
+    *data += 1;
+    println!("{:?}", *data);
 }
