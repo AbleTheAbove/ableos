@@ -50,3 +50,8 @@ pub fn seed_rng() -> PRand {
     // serial_println!("Seeded PRNG");
     rand
 }
+
+/// called by arch specific timers to tick up all kernel related functions
+pub fn tick() {
+    // print!(".");
+}
