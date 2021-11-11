@@ -41,6 +41,11 @@ pub fn parse_format() {
             match x {
                 "NONE" => {}
                 "TAB" => {}
+                "SHIFT" => {}
+                "SCROLL_LOCK" => {}
+                "COMMA" => {}
+                "PERIOD" => {}
+                "QUOTE" => {}
                 "FUNCTION_1" => {}
                 "FUNCTION_2" => {}
                 "FUNCTION_3" => {}
@@ -53,6 +58,14 @@ pub fn parse_format() {
                 "FUNCTION_10" => {}
                 "FUNCTION_11" => {}
                 "FUNCTION_12" => {}
+                "COMMA" => {}
+                "PERIOD" => {}
+                "FORWARDSLASH" => {}
+                "GRAVE" => {}
+                "BRACKET_LEFT" => {}
+                "BACK_SLASH" => {}
+                "BRACKET_RIGHT" => {}
+                "QUOTE" => {}
                 _ => {}
             }
         }
