@@ -21,6 +21,13 @@ spin = "0.5.2"
 features = ["spin_no_std"]
 version = "1.0"
 
+# alloc required
+# [dependencies.wasmi]
+# version = "*"
+# default-features = false
+# features = ["core"]
+
+
 [target.'cfg(target_arch = "mips")'.dependencies]
 psp = "0.1.5"
 
@@ -31,4 +38,3 @@ cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
 x86_64 = "*"
 uart_16550 = "0.2.0"
 pic8259 = "0.10.1"
-

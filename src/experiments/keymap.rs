@@ -107,96 +107,43 @@ pub fn parse_format() {
    for x in test {
       for y in x.split("-") {
          if y.parse::<u64>().is_ok() {
+            todo![];
             // NOTE: this unwrap is ok bcause of the above check
-            println!("NUM: {:?}", y.parse::<u64>().unwrap());
-            serial_println!("NUM: {:?}", y.parse::<u64>().unwrap());
-         } else if x.starts_with('#') {
+            // println!("NUM: {:?}", y.parse::<u64>().unwrap());
+            // serial_println!("NUM: {:?}", y.parse::<u64>().unwrap());
+         } else if y.starts_with('#') {
             // ignore all # delimeted lines
          } else {
-            println!("STR: {:?}", y);
-            serial_println!("STR: {:?}", y);
-            match x {
-               "NONE" => {
-                  serial_println!("match");
-               }
-               "TAB" => {
-                  serial_println!("match");
-               }
-               "SHIFT" => {
-                  serial_println!("match");
-               }
-               "SCROLL_LOCK" => {
-                  serial_println!("match");
-               }
-               "COMMA" => {
-                  serial_println!("match");
-               }
-               "PERIOD" => {
-                  serial_println!("match");
-               }
-               "QUOTE" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_1" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_2" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_3" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_4" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_5" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_6" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_7" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_8" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_9" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_10" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_11" => {
-                  serial_println!("match");
-               }
-               "FUNCTION_12" => {
-                  serial_println!("match");
-               }
-               "COMMA" => {
-                  serial_println!("match");
-               }
-               "PERIOD" => {
-                  serial_println!("match");
-               }
-               "FORWARDSLASH" => {
-                  serial_println!("match");
-               }
-               "GRAVE" => {
-                  serial_println!("match");
-               }
-               "BRACKET_LEFT" => {
-                  serial_println!("match");
-               }
-               "BACK_SLASH" => {
-                  serial_println!("match");
-               }
-               "BRACKET_RIGHT" => {
-                  serial_println!("match");
-               }
-               "QUOTE" => {
-                  serial_println!("match");
-               }
+            // println!("STR: {:?}", y);
+            // serial_println!("STR: {:?}", y);
+            match y {
+               "NONE" => {}
+               "TAB" => {}
+               "SHIFT" => {}
+               "SCROLL_LOCK" => {}
+               "COMMA" => {}
+               "PERIOD" => {}
+               "QUOTE" => {}
+               "FUNCTION_1" => {}
+               "FUNCTION_2" => {}
+               "FUNCTION_3" => {}
+               "FUNCTION_4" => {}
+               "FUNCTION_5" => {}
+               "FUNCTION_6" => {}
+               "FUNCTION_7" => {}
+               "FUNCTION_8" => {}
+               "FUNCTION_9" => {}
+               "FUNCTION_10" => {}
+               "FUNCTION_11" => {}
+               "FUNCTION_12" => {}
+               "COMMA" => {}
+               "PERIOD" => {}
+               "FORWARDSLASH" => {}
+               "GRAVE" => {}
+               "BRACKET_LEFT" => {}
+               "BACK_SLASH" => {}
+               "BRACKET_RIGHT" => {}
+               "QUOTE" => {}
                _ => {}
             }
          }

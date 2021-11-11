@@ -16,6 +16,12 @@ lazy_static! {
     };
 }
 
+// ctrl+v paste but not pop and pastes
+// ctrl+shift+v pops from the stack and pastes
+// ctrl+c pushes to the stack
+// ctrl+shift+< move stack pointer left
+// ctrl+shift+> move stack pointer right
+
 pub struct Clipboard {
     pub index: usize,
     pub pages: Vec<Mime>,
@@ -27,7 +33,6 @@ impl Clipboard {
             pages: vec![],
         }
     }
-
     pub fn clear(&mut self) {
         self.pages = vec![];
     }
@@ -40,7 +45,6 @@ impl Clipboard {
     pub fn clip_home(&mut self) {
         self.index = self.pages.len();
     }
-
     pub fn copy(&mut self, copy_mime: Mime) {
         self.pages.push(copy_mime);
     }
