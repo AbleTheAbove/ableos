@@ -1,4 +1,4 @@
 pub trait Serial {
-    fn print();
-    fn recieve();
+   fn print();
+   fn recieve();
 }
