@@ -44,7 +44,8 @@ impl RandomHandeler {
     // FIXME: Likely to panic
     pub fn seed_entropy_timer(&mut self, seed: u64) {
         let bytes = seed.to_be_bytes();
-        serial_println!("{:?}", bytes);
+        // serial_println!("{:?}", bytes);
+
         for byte in bytes {
             self.entropy.pool[self.entropy.pool_index as usize] =
                 self.entropy.pool[self.entropy.pool_index as usize].wrapping_mul(byte);

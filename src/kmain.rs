@@ -20,7 +20,7 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
-
+    crate::experiments::keymap::parse_format();
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
@@ -55,6 +55,6 @@ lazy_static! {
 pub fn tick() {
     let mut data = TICK.lock();
     *data += 1;
-    serial_println!("{}", *data);
+    // serial_println!("{}", *data);
     RAND_HANDLE.lock().seed_entropy_timer(*data);
 }
