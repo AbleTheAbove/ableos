@@ -19,7 +19,8 @@ mod arch;
 mod arch;
 
 use arch::drivers::graphics;
-
+#[macro_use]
+use arch::drivers::serial;
 #[macro_use]
 pub mod print;
 

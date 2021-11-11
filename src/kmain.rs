@@ -1,10 +1,11 @@
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
-    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RNG},
+    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
     serial_print, serial_println,
 };
 
+use lazy_static::lazy_static;
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
@@ -19,11 +20,7 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
-    {
-        let mut prng = seed_rng();
-        prng.rand();
-        serial_println!("{}", prng.rand());
-    }
+
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
@@ -38,31 +35,26 @@ pub extern "C" fn kernel_main() {
 
     crate::arch::shutdown();
 }
-
+// TODO: reimplement for the random handler
 pub fn seed_rng() -> PRand {
     println!("Seeding PRNG");
-
-    let mut data = TIME.lock();
-    // serial_println!("Seeding PRNG");
+    let mut data = TICK.lock();
     let mut rand = PRand::new();
     let seed = rand.rand();
     rand.seed(*data);
     println!("Seeded PRNG");
-    // serial_println!("Seeded PRNG");
     rand
 }
-use lazy_static::lazy_static;
 
 lazy_static! {
     // TODO: should have a sin wave influence contribution to entropy
-    pub static ref TIME: spin::Mutex<u64> = spin::Mutex::new(0);
+    pub static ref TICK: spin::Mutex<u64> = spin::Mutex::new(0);
 }
 
 /// called by arch specific timers to tick up all kernel related functions
 pub fn tick() {
-    // TIME.lock().0 += 1;
-
-    let mut data = TIME.lock();
+    let mut data = TICK.lock();
     *data += 1;
-    println!("{:?}", *data);
+    serial_println!("{}", *data);
+    RAND_HANDLE.lock().seed_entropy_timer(*data);
 }
