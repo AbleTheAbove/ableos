@@ -24,7 +24,6 @@ pub extern "C" fn kernel_main() {
         prng.rand();
         serial_println!("{}", prng.rand());
     }
-
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
@@ -55,6 +54,7 @@ pub fn seed_rng() -> PRand {
 use lazy_static::lazy_static;
 
 lazy_static! {
+    // TODO: should have a sin wave influence contribution to entropy
     pub static ref TIME: spin::Mutex<u64> = spin::Mutex::new(0);
 }
 
