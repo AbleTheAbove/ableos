@@ -1,14 +1,11 @@
 use crate::{
-   arch::{drivers::graphics::GraphicsBuffer, init},
-   driver_traits::graphics::Graphics,
-    arch::init,
+    arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
-    // serial_print, serial_println,
-    graphics::GraphicsBuffer,
-    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RNG},
-
+    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
+    serial_print, serial_println,
 };
 
+use lazy_static::lazy_static;
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
@@ -18,41 +15,12 @@ pub extern "C" fn stack_overflow() -> u8 {
 
 #[no_mangle]
 pub extern "C" fn kernel_main() {
-   init::init();
-
-   GraphicsBuffer::draw();
-   GraphicsBuffer::hide_cursor();
-   GraphicsBuffer::show_cursor();
-   println!("Initialized");
-
-   let mut rand = PRand::new();
-   let seed = rand.rand();
-   rand.seed(seed);
-
-   println!("Psuedo Random Number generated {:?}", rand.rand());
-
-   //  unsafe {+
-   //     *(0xabebdeef as *mut u64) = 69;
-   //  }
-
-   // stack_overflow();
-
-   println!("It did not crash!");
-
-   crate::arch::shutdown();
-}
-
     init::init();
 
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
-    {
-        let mut prng = seed_rng();
-        prng.rand();
-        println!("{}", prng.rand());
-    }
-
+    crate::experiments::keymap::parse_format();
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
@@ -67,14 +35,26 @@ pub extern "C" fn kernel_main() {
 
     crate::arch::shutdown();
 }
-
+// TODO: reimplement for the random handler
 pub fn seed_rng() -> PRand {
     println!("Seeding PRNG");
-    // serial_println!("Seeding PRNG");
+    let mut data = TICK.lock();
     let mut rand = PRand::new();
     let seed = rand.rand();
-    rand.seed(seed);
+    rand.seed(*data);
     println!("Seeded PRNG");
-    // serial_println!("Seeded PRNG");
     rand
+}
+
+lazy_static! {
+    // TODO: should have a sin wave influence contribution to entropy
+    pub static ref TICK: spin::Mutex<u64> = spin::Mutex::new(0);
+}
+
+/// called by arch specific timers to tick up all kernel related functions
+pub fn tick() {
+    let mut data = TICK.lock();
+    *data += 1;
+    // serial_println!("{}", *data);
+    RAND_HANDLE.lock().seed_entropy_timer(*data);
 }
