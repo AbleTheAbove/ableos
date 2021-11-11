@@ -1,4 +1,4 @@
-mod keymap;
+pub mod keymap;
 pub mod server;
 pub mod systeminfo;
 pub mod virtual_memory;

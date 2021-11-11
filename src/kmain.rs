@@ -20,7 +20,7 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
-
+    crate::experiments::keymap::parse_format();
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
