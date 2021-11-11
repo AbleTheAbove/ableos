@@ -7,7 +7,6 @@ use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame, Pag
 use pic8259::ChainedPics;
 use spin;
 
-
 pub const PIC_1_OFFSET: u8 = 32;
 pub const PIC_2_OFFSET: u8 = PIC_1_OFFSET + 8;
 
@@ -31,10 +30,9 @@ impl InterruptIndex {
       usize::from(self.as_u8())
    }
 }
-    spin::Mutex::new(unsafe { ChainedPics::new(PIC_1_OFFSET, PIC_2_OFFSET) });
 
 pub fn init_idt() {
-    IDT.load();
+   IDT.load();
 }
 
 lazy_static! {
@@ -52,15 +50,15 @@ lazy_static! {
 }
 
 extern "x86-interrupt" fn breakpoint_handler(stack_frame: InterruptStackFrame) {
-    println!("EXCEPTION: BREAKPOINT\n{:#?}", stack_frame);
+   println!("EXCEPTION: BREAKPOINT\n{:#?}", stack_frame);
 }
 
 // new
 extern "x86-interrupt" fn double_fault_handler(
-    stack_frame: InterruptStackFrame,
-    _error_code: u64,
+   stack_frame: InterruptStackFrame,
+   _error_code: u64,
 ) -> ! {
-    panic!("EXCEPTION: DOUBLE FAULT\n{:#?}", stack_frame);
+   panic!("EXCEPTION: DOUBLE FAULT\n{:#?}", stack_frame);
 }
 
 extern "x86-interrupt" fn timer_interrupt_handler(_stack_frame: InterruptStackFrame) {
@@ -75,7 +73,7 @@ extern "x86-interrupt" fn timer_interrupt_handler(_stack_frame: InterruptStackFr
 
 extern "x86-interrupt" fn keyboard_interrupt_handler(_stack_frame: InterruptStackFrame) {
    use x86_64::instructions::port::Port;
-   
+
    let mut port = Port::new(0x60);
    let scancode: u8 = unsafe { port.read() };
    print!("{}", scancode);
