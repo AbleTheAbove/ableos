@@ -55,6 +55,6 @@ lazy_static! {
 pub fn tick() {
     let mut data = TICK.lock();
     *data += 1;
-    serial_println!("{}", *data);
+    // serial_println!("{}", *data);
     RAND_HANDLE.lock().seed_entropy_timer(*data);
 }
