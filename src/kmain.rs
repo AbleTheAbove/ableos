@@ -20,6 +20,14 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
+    seed_rng();
+
+    /* If AES is present then AES init rng as well
+    // Maybe via a cfg
+        AES::init_rng();
+
+        */
+
     crate::experiments::keymap::parse_format();
     {
         use crate::experiments::mail::MailBoxes;
@@ -41,6 +49,7 @@ pub fn seed_rng() -> PRand {
     let mut data = TICK.lock();
     let mut rand = PRand::new();
     let seed = rand.rand();
+    println!("{:?}", seed);
     rand.seed(*data);
     println!("Seeded PRNG");
     rand
