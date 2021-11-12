@@ -36,6 +36,7 @@ mod driver_traits;
 
 mod experiments;
 pub use experiments::server;
+pub mod keyboard;
 
 pub mod relib;
 
