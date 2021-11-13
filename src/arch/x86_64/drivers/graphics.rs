@@ -2,6 +2,8 @@ use crate::driver_traits::graphics::{Graphics, Point, RGB};
 use cpuio::outw;
 
 pub struct GraphicsBuffer;
+
+#[allow(unused)]
 impl Graphics for GraphicsBuffer {
     fn put_line(coords_start: Point, coords_end: Point, thickness: u32, color: RGB) {
         todo!()

@@ -389,7 +389,7 @@ impl KeyboardLayout for CustomLayout {
 					raw_unicode,
 				} => raw_unicode,
 				LayoutEntry::Numlockable {
-					unshifted,
+					unshifted: _,
 					shifted: _,
 					locked: _,
 					locked_shifted: _,
@@ -465,15 +465,15 @@ impl KeyboardLayout for CustomLayout {
 			match spot {
 				LayoutEntry::Regular {
 					unshifted,
-					shifted,
-					altgr,
-					raw_unicode,
+					shifted: _,
+					altgr: _,
+					raw_unicode: _,
 				} => unshifted,
 				LayoutEntry::Numlockable {
 					unshifted,
-					shifted,
+					shifted: _,
 					locked,
-					locked_shifted,
+					locked_shifted: _,
 				} => {
 					if modifiers.numlock {
 						locked
@@ -483,11 +483,11 @@ impl KeyboardLayout for CustomLayout {
 				}
 				LayoutEntry::Capslockable {
 					unshifted,
-					shifted,
+					shifted: _,
 					locked,
-					locked_shifted,
-					raw_unicode,
-					altgr,
+					locked_shifted: _,
+					raw_unicode: _,
+					altgr: _,
 				} => {
 					if modifiers.is_caps() {
 						locked

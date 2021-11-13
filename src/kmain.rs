@@ -48,7 +48,7 @@ pub extern "C" fn kernel_main() {
 // TODO: reimplement for the random handler
 pub fn seed_rng() -> PRand {
     println!("Seeding PRNG");
-    let mut data = TICK.lock();
+    let data = TICK.lock();
     let mut rand = PRand::new();
     let seed = rand.rand();
     println!("{:?}", seed);

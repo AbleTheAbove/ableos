@@ -1,5 +1,3 @@
-pub const ARCH: &str = "x86_64";
-
 use x86_64::instructions::hlt;
 pub mod drivers;
 pub mod gdt;

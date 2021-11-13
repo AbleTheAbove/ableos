@@ -30,7 +30,7 @@ impl RNG for LinearShiftRegister {
             // crate::serial_println!("Multitude {}", multitude);
             // crate::serial_println!("Seeded Bit {}", seeded_bit);
         }
-        for x in 0..seeded_bit {
+        for _ in 0..seeded_bit {
             self.rand();
         }
     }
