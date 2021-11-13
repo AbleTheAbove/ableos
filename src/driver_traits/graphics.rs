@@ -12,12 +12,10 @@ pub struct Rgb {
 }
 
 impl Rgb {
-    
     fn to_vga_color() {
         todo!();
     }
 }
-
 
 pub type RefreshRate = u8;
 

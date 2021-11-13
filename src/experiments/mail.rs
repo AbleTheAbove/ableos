@@ -17,7 +17,9 @@ impl MailBoxes {
         self.mailboxes = [0; 4];
     }
     pub fn set_mailbox(&mut self, mailbox_num: u8, mailbox_data: u64) {
-        if let 0..=3 = mailbox_num { self.mailboxes[mailbox_num as usize] = mailbox_data }
+        if let 0..=3 = mailbox_num {
+            self.mailboxes[mailbox_num as usize] = mailbox_data
+        }
     }
     pub fn set_flag(&mut self, flag_num: u8) {
         match flag_num {

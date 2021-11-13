@@ -41,7 +41,7 @@ impl Entropy {
 impl Default for Entropy {
     fn default() -> Self {
         Self::new()
-   }
+    }
 }
 pub struct RandomHandeler {
     prand: prand::PRand,
