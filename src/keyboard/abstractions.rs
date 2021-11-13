@@ -301,8 +301,8 @@ impl CustomLayout {
 		mapping.set_ab_n(KeyCode::Key7, Some('7'.into()), Some('&'.into()));
 		mapping.set_ab_n(KeyCode::Key8, Some('8'.into()), Some('*'.into()));
 		mapping.set_ab_n(KeyCode::Key9, Some('9'.into()), Some('('.into()));
-      mapping.set_ab_n(KeyCode::Minus, Some('_'.into()), Some('-'.into()));
-      mapping.set_ab_n(KeyCode::Equals, Some('+'.into()), Some('='.into()));
+      mapping.set_ab_n(KeyCode::Minus, Some('-'.into()), Some('_'.into()));
+      mapping.set_ab_n(KeyCode::Equals, Some('='.into()), Some('+'.into()));
       mapping.set_aa_a(KeyCode::Backspace,Some('\x08'.into()));
       mapping.set_aa_a(KeyCode::Tab,Some('\x09'.into()));
       mapping.set_abcd_e_letter(KeyCode::Q, Some('q'.into()), Some('Q'.into()), Some('Q'.into()),Some('q'.into()), Some('\u{0011}'.into()));
@@ -334,12 +334,12 @@ impl CustomLayout {
       mapping.set_ab_n(KeyCode::BracketSquareLeft, Some('{'.into()), Some('['.into()));
       mapping.set_ab_n(KeyCode::BracketSquareRight, Some('}'.into()), Some(']'.into()));
       mapping.set_ab_n(KeyCode::BackSlash, Some('|'.into()), Some('\\'.into()));
-      mapping.set_ab_n(KeyCode::SemiColon, Some(':'.into()), Some(';'.into()));
-      mapping.set_ab_n(KeyCode::Quote, Some('"'.into()), Some('\''.into()));
+      mapping.set_ab_n(KeyCode::SemiColon, Some(';'.into()), Some(':'.into()));
+      mapping.set_ab_n(KeyCode::Quote, Some('\''.into()), Some('"'.into()));
       mapping.set_aa_a(KeyCode::Enter,Some('\x0A'.into()));
-      mapping.set_ab_n(KeyCode::Comma, Some('<'.into()), Some(','.into()));
-      mapping.set_ab_n(KeyCode::Fullstop, Some('>'.into()), Some('.'.into()));
-      mapping.set_ab_n(KeyCode::Slash, Some('?'.into()), Some('/'.into()));
+      mapping.set_ab_n(KeyCode::Comma, Some(','.into()), Some('<'.into()));
+      mapping.set_ab_n(KeyCode::Fullstop, Some('.'.into()), Some('>'.into()));
+      mapping.set_ab_n(KeyCode::Slash, Some('/'.into()), Some('?'.into()));
       mapping.set_aa_a(KeyCode::Spacebar,Some(' '.into()));
       mapping.set_aa_a(KeyCode::Delete,Some('\x7F'.into()));
       mapping.set_aaaa_num(KeyCode::NumpadSlash, Some('/'.into()), );
