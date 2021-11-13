@@ -10,9 +10,11 @@ pub extern "C" fn _start() -> ! {
    sloop();
 }
 
+#[allow(unused)]
 pub fn shutdown() -> ! {
    sloop();
 }
+
 pub fn sloop() -> ! {
    loop {
       hlt();

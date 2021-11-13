@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub enum GModes {
     Vga800x600,
     Custom(u16, u16),
@@ -11,6 +12,7 @@ pub struct RGB {
 }
 
 impl RGB {
+    #[allow(unused)]
     fn to_vga_color() {
         todo!();
     }
