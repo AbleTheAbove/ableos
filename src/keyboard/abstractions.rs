@@ -1,3 +1,4 @@
+#![allow(clippy::too_many_arguments)]
 use super::*;
 pub struct CustomScanCodeSet {
 	single_byte: [Option<KeyCode>; 256],

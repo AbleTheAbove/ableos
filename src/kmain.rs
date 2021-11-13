@@ -1,3 +1,4 @@
+#![allow(clippy::empty_loop)]
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::graphics::Graphics,

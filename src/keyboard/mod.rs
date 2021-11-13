@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 mod abstractions;
 mod small_types;
 mod traits;
@@ -78,8 +79,7 @@ where
 	/// We assume the start, stop and parity bits have been processed and
 	/// verified.
 	pub fn add_byte(&mut self, byte: u8) -> Result<Option<KeyEvent>, Error> {
-		let r = self.set.advance_state(&mut self.decode_state, byte);
-		r
+		self.set.advance_state(&mut self.decode_state, byte)
 	}
 	/// Shift a bit into the register.
 	///
@@ -229,7 +229,7 @@ pub fn parse_format() {
 	let test = include_str!("../../keymaps/qwerty.keymap").lines();
 	// r#"0-NONE\n1-HI#Says HI"#
 	for x in test {
-		for y in x.split("-") {
+		for y in x.split('-') {
 			if y.parse::<u64>().is_ok() {
 				todo![];
 			// NOTE: this unwrap is ok bcause of the above check

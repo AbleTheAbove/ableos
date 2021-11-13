@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use crate::serial_println;
 
 pub struct MailBoxes {
@@ -16,10 +17,7 @@ impl MailBoxes {
         self.mailboxes = [0; 4];
     }
     pub fn set_mailbox(&mut self, mailbox_num: u8, mailbox_data: u64) {
-        match mailbox_num {
-            0..=3 => self.mailboxes[mailbox_num as usize] = mailbox_data,
-            _ => {}
-        }
+        if let 0..=3 = mailbox_num { self.mailboxes[mailbox_num as usize] = mailbox_data }
     }
     pub fn set_flag(&mut self, flag_num: u8) {
         match flag_num {
@@ -61,7 +59,7 @@ impl MailBoxes {
         serial_println!("Flag 6: {:08b}", self.flags & 0b0100_0000);
         serial_println!("Flag 7: {:08b}", self.flags & 0b1000_0000);
 
-        serial_println!("Flag 0: {}", self.flags >> 0 & 0b0000_0001);
+        serial_println!("Flag 0: {}", self.flags & 0b0000_0001);
         serial_println!("Flag 1: {}", self.flags >> 1 & 0b0000_0001);
         serial_println!("Flag 2: {}", self.flags >> 2 & 0b0000_0001);
         serial_println!("Flag 3: {}", self.flags >> 3 & 0b0000_0001);
