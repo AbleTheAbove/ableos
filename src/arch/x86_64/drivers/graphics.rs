@@ -1,5 +1,5 @@
 use crate::driver_traits::graphics::{Graphics, Point, RGB};
-use cpuio::{inw, outb, outw};
+use cpuio::outw;
 
 pub struct GraphicsBuffer;
 impl Graphics for GraphicsBuffer {

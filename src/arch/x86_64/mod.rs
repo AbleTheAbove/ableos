@@ -1,4 +1,4 @@
-pub const ARCH: &'static str = "x86_64";
+pub const ARCH: &str = "x86_64";
 
 use x86_64::instructions::hlt;
 pub mod drivers;
@@ -10,10 +10,6 @@ pub mod interrupts;
 pub extern "C" fn _start() -> ! {
    crate::kmain::kernel_main();
    sloop();
-    crate::kmain::kernel_main();
-
-    sloop();
-    loop {}
 }
 
 pub fn shutdown() -> ! {

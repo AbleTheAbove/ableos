@@ -1,5 +1,5 @@
 use crate::{arch::sloop, println, serial_println};
-use core::{intrinsics::abort, panic::PanicInfo};
+use core::panic::PanicInfo;
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {

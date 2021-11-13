@@ -1,5 +1,3 @@
-use core;
-
 pub struct Scheduler {
    executables: usize,
 }

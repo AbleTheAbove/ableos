@@ -1,5 +1,4 @@
 use super::*;
-use core::default;
 pub struct CustomScanCodeSet {
 	single_byte: [Option<KeyCode>; 256],
 	extended: [Option<KeyCode>; 256],
@@ -384,61 +383,61 @@ impl KeyboardLayout for CustomLayout {
 		if let Some(k) = if map_to_unicode && modifiers.is_ctrl() {
 			match spot {
 				LayoutEntry::Regular {
-					unshifted,
-					shifted,
-					altgr,
+					unshifted: _,
+					shifted: _,
+					altgr: _,
 					raw_unicode,
 				} => raw_unicode,
 				LayoutEntry::Numlockable {
 					unshifted,
-					shifted,
-					locked,
-					locked_shifted,
+					shifted: _,
+					locked: _,
+					locked_shifted: _,
 				} => &None,
 				LayoutEntry::Capslockable {
-					unshifted,
-					shifted,
-					locked,
-					locked_shifted,
+					unshifted: _,
+					shifted: _,
+					locked: _,
+					locked_shifted: _,
 					raw_unicode,
-					altgr,
+					altgr: _,
 				} => raw_unicode,
 			}
 		} else if modifiers.alt_gr {
 			match spot {
 				LayoutEntry::Regular {
-					unshifted,
-					shifted,
+					unshifted: _,
+					shifted: _,
 					altgr,
-					raw_unicode,
+					raw_unicode: _,
 				} => altgr,
 				LayoutEntry::Numlockable {
-					unshifted,
-					shifted,
-					locked,
-					locked_shifted,
+					unshifted: _,
+					shifted: _,
+					locked: _,
+					locked_shifted: _,
 				} => &None,
 				LayoutEntry::Capslockable {
-					unshifted,
-					shifted,
-					locked,
-					locked_shifted,
-					raw_unicode,
+					unshifted:_,
+					shifted: _,
+					locked: _,
+					locked_shifted: _,
+					raw_unicode: _,
 					altgr,
 				} => altgr,
 			}
 		} else if modifiers.is_shifted() {
 			match spot {
 				LayoutEntry::Regular {
-					unshifted,
+					unshifted: _,
 					shifted,
-					altgr,
-					raw_unicode,
+					altgr: _,
+					raw_unicode: _,
 				} => shifted,
 				LayoutEntry::Numlockable {
-					unshifted,
+					unshifted: _,
 					shifted,
-					locked,
+					locked: _,
 					locked_shifted,
 				} => {
 					if modifiers.numlock {
@@ -448,12 +447,12 @@ impl KeyboardLayout for CustomLayout {
 					}
 				}
 				LayoutEntry::Capslockable {
-					unshifted,
+					unshifted: _,
 					shifted,
-					locked,
+					locked: _,
 					locked_shifted,
-					raw_unicode,
-					altgr,
+					raw_unicode: _,
+					altgr: _,
 				} => {
 					if modifiers.is_caps() {
 						locked_shifted
