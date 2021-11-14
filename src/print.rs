@@ -17,6 +17,12 @@ impl core::fmt::Write for Stdout {
         Ok(())
     }
 
+    #[cfg(target_arch = "aarch64")]
+    fn write_str(&mut self, s: &str) -> Result<(), Error> {
+        // Don't actually print anything yet lmao
+        Ok(())
+    }
+
     #[cfg(target_arch = "x86_64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         use crate::kprint;

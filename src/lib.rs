@@ -1,6 +1,7 @@
 #![no_std]
 // #![deny(warnings)]
 #![feature(asm)]
+#![feature(global_asm)]
 #![feature(abi_x86_interrupt)]
 #![feature(core_intrinsics, lang_items, llvm_asm)]
 // #![feature(alloc_error_handler)] // at the top of the file
@@ -11,6 +12,11 @@
 #[cfg(target_arch = "arm")]
 #[path = "arch/aarch32/mod.rs"]
 mod arch;
+
+#[cfg(target_arch = "aarch64")]
+#[path = "arch/aarch64/mod.rs"]
+mod arch;
+
 #[cfg(target_arch = "x86_64")]
 #[path = "arch/x86_64/mod.rs"]
 mod arch;
