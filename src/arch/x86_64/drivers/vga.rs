@@ -116,6 +116,7 @@ lazy_static! {
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
+#[allow(dead_code)]
 pub fn set_vga_color() {
     WRITER.lock().color_code = ColorCode::new(Color::White, Color::Yellow);
 }

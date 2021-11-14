@@ -19,9 +19,6 @@ mod arch;
 #[path = "arch/ps_portable/mod.rs"]
 mod arch;
 
-use arch::drivers::graphics;
-#[macro_use]
-use arch::drivers::serial;
 #[macro_use]
 pub mod print;
 
@@ -47,4 +44,3 @@ pub const RELEASE_TYPE: &str = "debug";
 #[cfg(not(debug_assertions))]
 /// A constant to check if the kernel is in release mode
 pub const RELEASE_TYPE: &str = "release";
-use relib::time;

@@ -2,7 +2,7 @@ use crate::{arch::gdt, print, println};
 use lazy_static::lazy_static;
 use pic8259::ChainedPics;
 use spin;
-use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame, PageFaultErrorCode};
+use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame};
 pub const PIC_1_OFFSET: u8 = 32;
 pub const PIC_2_OFFSET: u8 = PIC_1_OFFSET + 8;
 pub static PICS: spin::Mutex<ChainedPics> =
@@ -81,7 +81,6 @@ extern "x86-interrupt" fn keyboard_interrupt_handler(_stack_frame: InterruptStac
                     value: character,
                 } => {
                     print!("{}", char::try_from(character).unwrap());
-                    use crate::serial_print;
                     // serial_print!("{}", character);
                     crate::kmain::key_entropy(character.try_into().unwrap());
                 }

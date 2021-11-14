@@ -1,12 +1,7 @@
-use core;
+#![allow(dead_code)]
 
 pub struct Scheduler {
-   executables: usize,
+    executables: usize,
 }
 
-
-
-
-pub struct RunQueue {
-
-}
+pub struct RunQueue {}

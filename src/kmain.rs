@@ -1,8 +1,8 @@
+#![allow(clippy::empty_loop)]
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
-    driver_traits::{graphics::Graphics, serial::Serial},
-    relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
-    serial_print, serial_println,
+    driver_traits::graphics::Graphics,
+    relib::math::rand::{prand::PRand, RAND_HANDLE, RNG},
 };
 
 use lazy_static::lazy_static;
@@ -45,13 +45,11 @@ pub extern "C" fn kernel_main() {
     // stack_overflow();
 
     loop {}
-
-    crate::arch::shutdown();
 }
 // TODO: reimplement for the random handler
 pub fn seed_rng() -> PRand {
     println!("Seeding PRNG");
-    let mut data = TICK.lock();
+    let data = TICK.lock();
     let mut rand = PRand::new();
     let seed = rand.rand();
     println!("{:?}", seed);

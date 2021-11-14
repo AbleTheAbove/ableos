@@ -1,9 +1,6 @@
 #![allow(clippy::print_literal)]
-use super::drivers::vga;
 use super::{gdt, interrupts};
 use crate::{println, serial_println};
-
-use core::fmt::Write;
 
 pub fn init() {
     gdt::init();

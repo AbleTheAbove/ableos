@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 pub mod linearshift;
 pub mod prand;
 pub mod wichmanhillrand; // FIXEME: Reimplement
@@ -35,6 +36,11 @@ impl Entropy {
     pub fn read_entropy(&mut self) -> u8 {
         self.bytes_count -= 1;
         1
+    }
+}
+impl Default for Entropy {
+    fn default() -> Self {
+        Self::new()
     }
 }
 pub struct RandomHandeler {

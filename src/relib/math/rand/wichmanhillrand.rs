@@ -18,7 +18,7 @@ impl RNG for WichmannHillRand {
         self.seed1 = (self.seed1.wrapping_mul(172)) % 30307;
         self.seed2 = (self.seed2.wrapping_mul(173)) % 30323;
 
-        return (self.seed0 / 30269 + self.seed1 / 30307 + self.seed2 / 30323).into();
+        (self.seed0 / 30269 + self.seed1 / 30307 + self.seed2 / 30323).into()
     }
     fn seed(&mut self, seed: u64) {
         self.seed0 = (seed >> 48) as u16;
