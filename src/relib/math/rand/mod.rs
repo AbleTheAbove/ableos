@@ -12,6 +12,9 @@ pub trait RNG {
     fn rand(&mut self) -> u64;
     fn seed(&mut self, seed: u64);
 }
+
+pub type KeyEntropyHandler = u8;
+
 pub struct Entropy {
     // Everytime entropy is used decrement bits count
     bytes_count: u8, // 167 is our lower desired bit count
@@ -38,13 +41,23 @@ pub struct RandomHandeler {
     prand: prand::PRand,
     linearshift: linearshift::LinearShiftRegister,
     entropy: Entropy,
+    key_handle: KeyEntropyHandler,
 }
 impl RandomHandeler {
     pub fn seed_entropy(&mut self) {}
     // FIXME: Likely to panic
+
+    pub fn seed_entropy_keyboard(&mut self, key: u8) {
+        crate::serial_println!("{}", self.key_handle);
+        if self.key_handle > 7 {
+            self.key_handle = 0
+        }
+        self.entropy.pool[self.key_handle as usize] += key;
+        self.key_handle += 1;
+    }
     pub fn seed_entropy_timer(&mut self, seed: u64) {
         let bytes = seed.to_be_bytes();
-        // serial_println!("{:?}", bytes);
+        serial_println!("{:?}", bytes);
 
         for byte in bytes {
             self.entropy.pool[self.entropy.pool_index as usize] =
@@ -59,5 +72,6 @@ lazy_static! {
         prand: PRand::new(),
         linearshift: LinearShiftRegister::new(),
         entropy: Entropy::new(),
+        key_handle: 0,
     });
 }
