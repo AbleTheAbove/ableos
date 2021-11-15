@@ -19,7 +19,7 @@ pub struct Entropy {
     // Everytime entropy is used decrement bits count
     bytes_count: u8, // 167 is our lower desired bit count
     pool_index: u8,
-    pool: [u8; 255],
+    pool: [u64; 255],
 }
 impl Entropy {
     pub fn new() -> Self {
@@ -41,28 +41,36 @@ pub struct RandomHandeler {
     prand: prand::PRand,
     linearshift: linearshift::LinearShiftRegister,
     entropy: Entropy,
-    key_handle: KeyEntropyHandler,
 }
 impl RandomHandeler {
-    pub fn seed_entropy(&mut self) {}
+    pub fn seed_entropy(&mut self) {
+        // n is even
+        self.prand
+            .seed(self.entropy.pool[self.entropy.pool_index as usize]);
+        //otherwise odd
+        self.linearshift
+            .seed(self.entropy.pool[self.entropy.pool_index as usize]);
+    }
     // FIXME: Likely to panic
 
     pub fn seed_entropy_keyboard(&mut self, key: u8) {
-        crate::serial_println!("{}", self.key_handle);
-        if self.key_handle > 7 {
-            self.key_handle = 0
+        self.entropy.pool_index += key;
+        if self.entropy.pool_index > 254 {
+            self.entropy.pool_index = 0
         }
-        self.entropy.pool[self.key_handle as usize] += key;
-        self.key_handle += 1;
+        self.entropy.pool[self.entropy.pool_index as usize] += key as u64;
+
+        self.entropy.pool_index += 1;
     }
     pub fn seed_entropy_timer(&mut self, seed: u64) {
         let bytes = seed.to_be_bytes();
-        serial_println!("{:?}", bytes);
 
         for byte in bytes {
-            self.entropy.pool[self.entropy.pool_index as usize] =
-                self.entropy.pool[self.entropy.pool_index as usize].wrapping_mul(byte);
-            self.entropy.pool_index.wrapping_add(1);
+            if self.entropy.pool_index > 254 {
+                self.entropy.pool_index = 0
+            }
+            self.entropy.pool[self.entropy.pool_index as usize] += byte as u64;
+            self.entropy.pool_index += 1;
         }
     }
 }
@@ -72,6 +80,5 @@ lazy_static! {
         prand: PRand::new(),
         linearshift: LinearShiftRegister::new(),
         entropy: Entropy::new(),
-        key_handle: 0,
     });
 }
