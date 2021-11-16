@@ -1,0 +1,2 @@
+[alias]
+repbuild = "run --manifest-path ./repbuild/Cargo.toml --"

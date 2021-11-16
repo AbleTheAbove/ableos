@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  - push
+  - pull_request
+
+env:
+  CARGO_TERM_COLOR: always
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        components: rust-src
+    - uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release

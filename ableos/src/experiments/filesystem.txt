@@ -1,0 +1,15 @@
+<user>/home/app1
+<user>/conf/app1
+<user>/apps/app1
+
+file:app1
+conf:app1
+apps:app1
+// Discouraged
+raw:
+
+/<user>/<protocol>/app1
+protocol.toml
+
+
+hi = ""

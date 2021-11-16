@@ -1,0 +1,40 @@
+[package]
+name = "ableos"
+version = "0.1.0"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+panic = "abort"
+
+[package.metadata.bootimage]
+test-args = [
+    "-device", "isa-debug-exit,iobase=0xf4,iosize=0x04", "-serial", "stdio"
+]
+run-args=["-serial", "stdio"]
+
+[dependencies]
+spin = "0.5.2"
+# linked_list_allocator = "0.9.0"
+
+[dependencies.lazy_static]
+features = ["spin_no_std"]
+version = "1.0"
+
+# alloc required
+# [dependencies.wasmi]
+# version = "*"
+# default-features = false
+# features = ["core"]
+
+
+[target.'cfg(target_arch = "mips")'.dependencies]
+psp = "0.1.5"
+
+[target.'cfg(target_arch = "x86_64")'.dependencies]
+volatile = "0.2.6"
+bootloader = "0.9.8"
+cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
+x86_64 = "*"
+uart_16550 = "0.2.0"
+pic8259 = "0.10.1"
