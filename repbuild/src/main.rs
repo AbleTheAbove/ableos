@@ -12,6 +12,7 @@ enum Command {
         machine: Option<MachineType>,
     },
 }
+
 #[derive(clap::ArgEnum, Debug, Clone)]
 enum MachineType {
     X86,
@@ -56,29 +57,16 @@ fn main() -> anyhow::Result<()> {
                         .run()?;
                     #[rustfmt::skip]
                     xshell::cmd!(
-                        "
-                    qemu-system-riscv64
-      -machine virt
-      -cpu rv64
-      -smp 8
-      -m 128M
-      -bios opensbi-riscv64-generic-fw_jump.bin
-      -kernel blog_os/target/riscv64gc-unknown-none-elf/release/blog_os
-
-                        "
-                    )
-                    .run()?;
+                        "qemu-system-riscv64
+                            -machine virt
+                            -cpu rv64
+                            -smp 8
+                            -m 128M
+                            -bios src/arch/riscv/firmwear/opensbi-riscv64-generic-fw_jump.bin
+                            -kernel target/riscv64gc-unknown-none-elf/release/ableos"
+                        ).run()?;
                 }
             }
-            /*
-                #[rustfmt::skip]
-                xshell::cmd!("
-                    qemu-system-x86_64
-                        -drive format=raw,file=../../ableos/target/x86_64-ableos/release/bootimage-ableos.bin
-                        {debug_log...}
-                "
-            ).run()?;
-            */
         }
     }
 

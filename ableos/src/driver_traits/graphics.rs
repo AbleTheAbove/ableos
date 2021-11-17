@@ -1,9 +1,16 @@
 #![allow(unused)]
 pub enum GModes {
-	Vga800x600,
-	Custom(u16, u16),
+    Vga800x600,
+    Custom(u16, u16),
 }
 pub type GCoord = usize;
+
+// TODO remap to a bitmasked u32
+/* REASON: More effecient memory wise so less overhead on the wasm memory
+Current: u32+u32+u32
+Proposed: u32 with bitmaps
+*/
+
 pub struct Rgb {
     pub r: u32,
     pub g: u32,

@@ -30,7 +30,10 @@ impl core::fmt::Write for Stdout {
         kprint!("{}", s);
         Ok(())
     }
-
+    #[cfg(target_arch = "riscv64")]
+    fn write_str(&mut self, s: &str) -> Result<(), Error> {
+        Ok(())
+    }
     #[cfg(target_arch = "mips")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         use psp::dprint;

@@ -11,6 +11,10 @@ pub extern "C" fn _start() -> ! {
 
 #[allow(unused)]
 pub fn shutdown() -> ! {
+    unsafe {
+        cpuio::outw(0x2000, 0x604);
+    }
+
     sloop();
 }
 
@@ -21,7 +25,7 @@ pub fn sloop() -> ! {
 }
 #[cfg(test)]
 pub fn test_runner(tests: &[&dyn Fn()]) {
-	for test in tests {
-		test();
-	}
+    for test in tests {
+        test();
+    }
 }

@@ -33,8 +33,9 @@ pub extern "C" fn kernel_main() {
         AES::init_rng();
 
         */
-
+    #[cfg(not(target_arch = "riscv64"))]
     println!("init");
+
     {
         use crate::experiments::mail::MailBoxes;
         let mut x = MailBoxes::new();
@@ -44,7 +45,7 @@ pub extern "C" fn kernel_main() {
     }
 
     // stack_overflow();
-
+    // crate::arch::shutdown();
     loop {}
 }
 // TODO: reimplement for the random handler
