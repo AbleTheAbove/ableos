@@ -49,8 +49,7 @@ fn main() -> anyhow::Result<()> {
                         -kernel target/aarch64-ableos/release/ableos
                         -device virtio-keyboard
                         "
-                    )
-                    .run()?;
+                    ).run()?;
                 }
                 MachineType::RISCV => {
                     xshell::cmd!("cargo build --release --target=riscv64gc-unknown-none-elf")

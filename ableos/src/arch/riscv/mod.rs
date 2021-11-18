@@ -29,13 +29,10 @@ unsafe extern "C" fn _boot() -> ! {
     ",
     sym _start, options(noreturn));
 }
-
+use crate::serial::SERIAL;
 extern "C" fn _start() -> ! {
-    let uart_data = 0x10000000 as *mut u8;
-    for c in b"Hello, world!\n" {
-        unsafe { uart_data.write_volatile(*c) };
-    }
-
+    SERIAL.lock().out(format_args!("Hi"));
+    // Serial123::out();
     sloop()
 }
 
