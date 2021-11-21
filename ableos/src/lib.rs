@@ -1,3 +1,5 @@
+//! hi
+
 #![no_std]
 // #![deny(warnings)]
 #![feature(asm)]

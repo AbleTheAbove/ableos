@@ -4,7 +4,6 @@ use core::ptr;
 pub mod drivers;
 pub mod init;
 
-pub mod serial;
 use crate::arch::drivers::nrf52::{Level, Pins};
 use core::ptr::write_volatile;
 global_asm!(include_str!("boot.s"));

@@ -11,6 +11,11 @@ enum Command {
         #[clap(long, short, arg_enum)]
         machine: Option<MachineType>,
     },
+
+    Doc {
+        #[clap(long, short, arg_enum)]
+        machine: Option<MachineType>,
+    },
 }
 
 #[derive(clap::ArgEnum, Debug, Clone)]
@@ -34,7 +39,6 @@ fn main() -> anyhow::Result<()> {
             };
             match machine.unwrap_or(MachineType::X86) {
                 MachineType::X86 => {
-                    // Used for the x86-64 variant only
                     xshell::cmd!("cargo run --release").run()?;
                 }
                 MachineType::ARM => {
@@ -64,6 +68,23 @@ fn main() -> anyhow::Result<()> {
                             -bios src/arch/riscv/firmwear/opensbi-riscv64-generic-fw_jump.bin
                             -kernel target/riscv64gc-unknown-none-elf/release/ableos"
                         ).run()?;
+                }
+            }
+        }
+
+        Command::Doc { machine } => {
+            let _dir = xshell::pushd("./ableos");
+
+            match machine.unwrap_or(MachineType::X86) {
+                MachineType::X86 => {
+                    xshell::cmd!("cargo doc --open").run()?;
+                }
+                MachineType::ARM => {
+                    xshell::cmd!("cargo doc --open --target=json_targets/aarch64-ableos.json")
+                        .run()?;
+                }
+                MachineType::RISCV => {
+                    xshell::cmd!("cargo doc --open --target=riscv64gc-unknown-none-elf").run()?;
                 }
             }
         }
