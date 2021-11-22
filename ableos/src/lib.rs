@@ -1,39 +1,38 @@
 //! hi
 
 #![no_std]
-// #![deny(warnings)]
-#![feature(asm)]
-#![feature(global_asm)]
-#![feature(abi_x86_interrupt)]
-#![feature(core_intrinsics, lang_items, llvm_asm)]
-// #![feature(alloc_error_handler)] // at the top of the file
-#![reexport_test_harness_main = "test_main"]
-#![feature(custom_test_frameworks)]
-#![test_runner(crate::arch::test_runner)]
-#![feature(naked_functions)]
-#[cfg(target_arch = "arm")]
-#[path = "arch/aarch32/mod.rs"]
-mod arch;
+#![feature(
+    abi_x86_interrupt,
+    asm,
+    core_intrinsics,
+    global_asm,
+    lang_items,
+    llvm_asm,
+    naked_functions
+)]
 
 #[cfg(target_arch = "aarch64")]
 #[path = "arch/aarch64/mod.rs"]
-mod arch;
+pub mod arch;
 
 #[cfg(target_arch = "x86_64")]
 #[path = "arch/x86_64/mod.rs"]
-mod arch;
+pub mod arch;
+
 #[cfg(target_arch = "riscv64")]
 #[path = "arch/riscv/mod.rs"]
-mod arch;
+pub mod arch;
+
 #[macro_use]
 pub mod print;
 
 use arch::drivers::serial;
 
-mod driver_traits;
-mod experiments;
-mod kmain;
-mod panic;
-pub use experiments::server;
+pub mod driver_traits;
+pub mod experiments;
 pub mod keyboard;
+pub mod kmain;
+pub mod panic;
 pub mod relib;
+
+use experiments::server;

@@ -9,5 +9,6 @@ build-std = ["core","alloc", "compiler_builtins"]
 [target.'cfg(target_arch = "x86_64")']
 # --quiet suppresses warning messages from the bootimage crate
 runner = "bootimage runner --quiet"
+
 [target.riscv64gc-unknown-none-elf]
 rustflags = "-C link-arg=-T../ableos/src/arch/riscv/virt.lds"
