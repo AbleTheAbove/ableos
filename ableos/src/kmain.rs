@@ -2,18 +2,19 @@
 use crate::{
     arch::{drivers::graphics::GraphicsBuffer, init},
     driver_traits::{graphics::Graphics, serial::Serial},
+    experiments::systeminfo::{KERNEL_VERSION, RELEASE_TYPE},
+    keyboard::DecodedKey,
     relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
     serial_print, serial_println,
 };
 use lazy_static::lazy_static;
+
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
     stack_overflow();
     69 // NOTE: Any specific reason for this number asside from memes?
 }
-
-use crate::keyboard::DecodedKey;
 
 lazy_static! {
     pub static ref KEY_BUFFER: [DecodedKey; 256] = [DecodedKey::RawKey(123); 256];
@@ -33,8 +34,8 @@ pub extern "C" fn kernel_main() {
         AES::init_rng();
 
         */
-    #[cfg(not(target_arch = "riscv64"))]
-    println!("init");
+
+    println!("{} v{}", RELEASE_TYPE, KERNEL_VERSION);
 
     {
         use crate::experiments::mail::MailBoxes;
