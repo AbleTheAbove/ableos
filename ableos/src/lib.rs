@@ -32,10 +32,7 @@ use arch::drivers::serial;
 
 mod driver_traits;
 mod experiments;
-#[cfg(not(target_arch = "mips"))]
-// pub mod allocator;
 mod kmain;
-#[cfg(not(target_arch = "mips"))]
 mod panic;
 pub use experiments::server;
 pub mod keyboard;
