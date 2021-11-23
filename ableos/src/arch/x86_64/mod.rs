@@ -1,13 +1,15 @@
 use x86_64::instructions::hlt;
+use bootloader::BootInfo;
 pub mod drivers;
 pub mod gdt;
 pub mod init;
 pub mod interrupts;
-#[no_mangle]
-pub extern "C" fn _start() -> ! {
-    crate::kmain::kernel_main();
-    sloop();
-}
+pub mod memory;
+// #[no_mangle]
+// pub extern "C" fn _start(boot_info: &'static BootInfo) -> ! {
+//     crate::kmain::kernel_main(boot_info);
+//     // sloop();
+// }
 
 #[allow(unused)]
 pub fn shutdown() -> ! {
