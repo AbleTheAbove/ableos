@@ -12,10 +12,8 @@ use crate::{
     relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
     serial_print, serial_println,
 };
-use bootloader::{entry_point, BootInfo};
-use lazy_static::lazy_static;
 
-use x86_64::{structures::paging::Page, VirtAddr};
+use lazy_static::lazy_static;
 
 #[no_mangle]
 #[allow(unconditional_recursion)]
@@ -30,9 +28,9 @@ lazy_static! {
     pub static ref KEY_BUFFER_POINTER: u8 = 0;
 }
 // Defines the entry point
-entry_point![kernel_main];
+
 #[no_mangle]
-pub fn kernel_main(boot_info: &'static BootInfo) -> ! {
+pub fn kernel_main() -> ! {
     init::init();
 
     GraphicsBuffer::draw();
@@ -61,18 +59,6 @@ pub fn kernel_main(boot_info: &'static BootInfo) -> ! {
         x.set_flag(2);
         // x.dump_flags();
     }
-
-    let phys_mem_offset = VirtAddr::new(boot_info.physical_memory_offset);
-
-    let mut mapper = unsafe { memory::init(phys_mem_offset) };
-    let mut frame_allocator =
-        unsafe { memory::BootInfoFrameAllocator::init(&boot_info.memory_map) };
-
-    let page = Page::containing_address(VirtAddr::new(0xdeadbeaf000));
-    memory::create_example_mapping(page, &mut mapper, &mut frame_allocator);
-
-    let page_ptr: *mut u64 = page.start_address().as_mut_ptr();
-    unsafe { page_ptr.offset(400).write_volatile(0xf021_f077_f065_804e) };
 
     // stack_overflow();
     // crate::arch::shutdown();
