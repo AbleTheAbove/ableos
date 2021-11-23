@@ -9,10 +9,16 @@ use crate::{
 	driver_traits::{graphics::Graphics, serial::Serial},
 	relib::math::rand::{linearshift::LinearShiftRegister, prand::PRand, RAND_HANDLE, RNG},
 	serial_print, serial_println,
+
+    experiments::systeminfo::{KERNEL_VERSION, RELEASE_TYPE},
+    keyboard::DecodedKey,
 };
 use bootloader::{entry_point, BootInfo};
 use lazy_static::lazy_static;
+
+
 use x86_64::{VirtAddr, structures::paging::Page};
+
 #[no_mangle]
 #[allow(unconditional_recursion)]
 pub extern "C" fn stack_overflow() -> u8 {
@@ -20,8 +26,6 @@ pub extern "C" fn stack_overflow() -> u8 {
 	// meme number
 	69 // NOTE: Any specific reason for this number asside from memes?
 }
-
-use crate::keyboard::DecodedKey;
 
 lazy_static! {
 	pub static ref KEY_BUFFER: [DecodedKey; 256] = [DecodedKey::RawKey(123); 256];
@@ -41,10 +45,11 @@ pub fn kernel_main(boot_info: &'static BootInfo) -> ! {
 	/* If AES is present then AES init rng as well
 	// Maybe via a cfg
 		AES::init_rng();
+*/
 
-		*/
-	#[cfg(not(target_arch = "riscv64"))]
-	println!("init");
+       
+
+    println!("{} v{}", RELEASE_TYPE, KERNEL_VERSION);
 
 	{
 		use crate::experiments::mail::MailBoxes;

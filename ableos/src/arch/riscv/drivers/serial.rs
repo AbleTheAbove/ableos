@@ -33,6 +33,7 @@ use lazy_static::lazy_static;
 lazy_static! {
     pub static ref SERIAL: Mutex<Serial123> = {
         let serial_port = Serial123 {
+            /// UART port for the serial  bus
             uart_data: 0x10000000,
         };
         Mutex::new(serial_port)

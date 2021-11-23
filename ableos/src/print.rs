@@ -9,20 +9,12 @@ impl Stdout {
     }
 }
 impl core::fmt::Write for Stdout {
-    #[cfg(target_arch = "arm")]
-    fn write_str(&mut self, s: &str) -> Result<(), Error> {
-        use crate::arch::write;
-        write(s);
-        Ok(())
-    }
-
     #[cfg(target_arch = "aarch64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         // Don't actually print anything yet lmao
 
         Ok(())
     }
-
     #[cfg(target_arch = "x86_64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
         use crate::kprint;
@@ -32,12 +24,6 @@ impl core::fmt::Write for Stdout {
     }
     #[cfg(target_arch = "riscv64")]
     fn write_str(&mut self, s: &str) -> Result<(), Error> {
-        Ok(())
-    }
-    #[cfg(target_arch = "mips")]
-    fn write_str(&mut self, s: &str) -> Result<(), Error> {
-        use psp::dprint;
-        dprint!("{}", s);
         Ok(())
     }
 }

@@ -2,14 +2,13 @@
 pub mod linearshift;
 pub mod prand;
 pub mod wichmanhillrand; // FIXEME: Reimplement
-use crate::serial_println;
 use lazy_static::lazy_static;
 use linearshift::LinearShiftRegister;
 use prand::PRand;
 pub trait RNG {
-	fn new() -> Self;
-	fn rand(&mut self) -> u64;
-	fn seed(&mut self, seed: u64);
+    fn new() -> Self;
+    fn rand(&mut self) -> u64;
+    fn seed(&mut self, seed: u64);
 }
 
 pub type KeyEntropyHandler = u8;
@@ -21,20 +20,20 @@ pub struct Entropy {
     pool: [u64; 255],
 }
 impl Entropy {
-	pub fn new() -> Self {
-		Self {
-			bytes_count: 0,
-			pool: [0; 255],
-			pool_index: 0,
-		}
-	}
-	pub fn poll_hardware() {
-		todo!();
-	}
-	pub fn read_entropy(&mut self) -> u8 {
-		self.bytes_count -= 1;
-		1
-	}
+    pub fn new() -> Self {
+        Self {
+            bytes_count: 0,
+            pool: [0; 255],
+            pool_index: 0,
+        }
+    }
+    pub fn poll_hardware() {
+        todo!();
+    }
+    pub fn read_entropy(&mut self) -> u8 {
+        self.bytes_count -= 1;
+        1
+    }
 }
 impl Default for Entropy {
     fn default() -> Self {
@@ -42,9 +41,9 @@ impl Default for Entropy {
     }
 }
 pub struct RandomHandeler {
-	prand: prand::PRand,
-	linearshift: linearshift::LinearShiftRegister,
-	entropy: Entropy,
+    prand: prand::PRand,
+    linearshift: linearshift::LinearShiftRegister,
+    entropy: Entropy,
 }
 impl RandomHandeler {
     pub fn seed_entropy(&mut self) {
@@ -79,9 +78,9 @@ impl RandomHandeler {
     }
 }
 lazy_static! {
-	pub static ref RAND_HANDLE: spin::Mutex<RandomHandeler> = spin::Mutex::new(RandomHandeler {
-		prand: PRand::new(),
-		linearshift: LinearShiftRegister::new(),
-		entropy: Entropy::new(),
-	});
+    pub static ref RAND_HANDLE: spin::Mutex<RandomHandeler> = spin::Mutex::new(RandomHandeler {
+        prand: PRand::new(),
+        linearshift: LinearShiftRegister::new(),
+        entropy: Entropy::new(),
+    });
 }
