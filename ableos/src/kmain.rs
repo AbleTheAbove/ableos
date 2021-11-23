@@ -36,7 +36,6 @@ pub fn kernel_main() -> ! {
     GraphicsBuffer::draw();
     GraphicsBuffer::hide_cursor();
     GraphicsBuffer::show_cursor();
-    seed_rng();
 
     {
         use alloc::{vec, vec::Vec};
@@ -64,17 +63,7 @@ pub fn kernel_main() -> ! {
     // crate::arch::shutdown();
     sloop()
 }
-// TODO: reimplement for the random handler
-pub fn seed_rng() -> PRand {
-    println!("Seeding PRNG");
-    let data = TICK.lock();
-    let mut rand = PRand::new();
-    let seed = rand.rand();
-    println!("{:?}", seed);
-    rand.seed(*data);
-    println!("Seeded PRNG");
-    rand
-}
+
 lazy_static! {
     // TODO: should have a sin wave influence contribution to entropy
     pub static ref TICK: spin::Mutex<u64> = spin::Mutex::new(0);
@@ -86,6 +75,7 @@ pub fn tick() {
     // serial_println!("{}", *data);
     RAND_HANDLE.lock().seed_entropy_timer(*data);
 }
+
 pub fn key_entropy(key: u8) {
     RAND_HANDLE.lock().seed_entropy_keyboard(key);
 }
