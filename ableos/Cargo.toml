@@ -40,7 +40,7 @@ psp = "0.1.5"
 
 [target.'cfg(target_arch = "x86_64")'.dependencies]
 volatile = "0.2.6"
-bootloader = "0.9.8"
+bootloader = {version = "0.9.8", features = ["map_physical_memory"]}
 cpuio = { git = "https://github.com/anyusernameworks/cpuio.git" }
 x86_64 = "*"
 uart_16550 = "0.2.0"
