@@ -29,10 +29,11 @@ unsafe extern "C" fn _boot() -> ! {
     ",
     sym _start, options(noreturn));
 }
+
 use crate::serial::SERIAL;
+
 extern "C" fn _start() -> ! {
     SERIAL.lock().out(format_args!("Hi"));
-    // Serial123::out();
     sloop()
 }
 

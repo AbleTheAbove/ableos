@@ -21,7 +21,6 @@ enum Command {
 #[derive(clap::ArgEnum, Debug, Clone)]
 enum MachineType {
     X86,
-    /// hi
     RISCV,
     ARM,
 }

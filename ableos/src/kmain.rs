@@ -29,11 +29,17 @@ pub extern "C" fn kernel_main() {
     GraphicsBuffer::show_cursor();
     seed_rng();
 
+    {
+        use alloc::{vec, vec::Vec};
+        let x: Vec<u8> = vec![1];
+        println!("{:?}", x);
+    }
+
     /* If AES is present then AES init rng as well
     // Maybe via a cfg
         AES::init_rng();
 
-        */
+    */
 
     println!("{} v{}", RELEASE_TYPE, KERNEL_VERSION);
 

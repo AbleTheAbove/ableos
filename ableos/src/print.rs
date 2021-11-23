@@ -1,6 +1,5 @@
 pub struct Stdout;
-use core::fmt::Arguments;
-use core::fmt::Error;
+use core::fmt::{Arguments, Error};
 impl Stdout {
     pub fn write_fmt(&mut self, arg: Arguments<'_>) /*-> Result<(), Error> */
     {

@@ -32,19 +32,19 @@ pub extern "C" fn not_main() {
             ptr::write_volatile(UART0, *byte);
         }
     }
-
-    let gpios = Pins::take();
-    let mut led = gpios.p0_31;
-
-    loop {
-        led.set_high();
-        delay(2_000_000);
-
-        led.set_low();
-        delay(6_000_000);
-    }
-
-    led.set_push_pull_output(Level::Low);
+    //
+    // let gpios = Pins::take();
+    // let mut led = gpios.p0_31;
+    //
+    // loop {
+    //     led.set_high();
+    //     delay(2_000_000);
+    //
+    //     led.set_low();
+    //     delay(6_000_000);
+    // }
+    //
+    // led.set_push_pull_output(Level::Low);
     crate::kmain::kernel_main();
 
     sloop();

@@ -4,6 +4,7 @@
 #![feature(
     abi_x86_interrupt,
     asm,
+    alloc_error_handler,
     core_intrinsics,
     global_asm,
     lang_items,
@@ -27,7 +28,6 @@ pub mod arch;
 pub mod print;
 
 use arch::drivers::serial;
-
 pub mod driver_traits;
 pub mod experiments;
 pub mod keyboard;
@@ -36,3 +36,7 @@ pub mod panic;
 pub mod relib;
 
 use experiments::server;
+
+extern crate alloc;
+
+pub mod allocator;

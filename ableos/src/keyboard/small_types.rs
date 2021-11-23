@@ -130,24 +130,32 @@ macro_rules! keycode_enum {
 keycode_enum! {
     AltLeft = 0x00,
     AltRight = 0x01,
+
     ArrowDown = 0x02,
     ArrowLeft = 0x03,
     ArrowRight = 0x04,
     ArrowUp = 0x05,
+
     BackSlash = 0x06,
     Backspace = 0x07,
     BackTick = 0x08,
+
     BracketSquareLeft = 0x09,
     BracketSquareRight = 0x0A,
+
     CapsLock = 0x0B,
+
     Comma = 0x0C,
+
     ControlLeft = 0x0D,
     ControlRight = 0x0E,
+
     Delete = 0x0F,
     End = 0x10,
     Enter = 0x11,
     Escape = 0x12,
     Equals = 0x13,
+
     F1 = 0x14,
     F2 = 0x15,
     F3 = 0x16,
@@ -160,9 +168,13 @@ keycode_enum! {
     F10 = 0x1D,
     F11 = 0x1E,
     F12 = 0x1F,
+
     Fullstop = 0x20,
+
     Home = 0x21,
+
     Insert = 0x22,
+
     Key1 = 0x23,
     Key2 = 0x24,
     Key3 = 0x25,
@@ -173,8 +185,11 @@ keycode_enum! {
     Key8 = 0x2A,
     Key9 = 0x2B,
     Key0 = 0x2C,
+
     Menus = 0x2D,
+
     Minus = 0x2E,
+
     Numpad0 = 0x2F,
     Numpad1 = 0x30,
     Numpad2 = 0x31,
@@ -185,6 +200,7 @@ keycode_enum! {
     Numpad7 = 0x36,
     Numpad8 = 0x37,
     Numpad9 = 0x38,
+
     NumpadEnter = 0x39,
     NumpadLock = 0x3A,
     NumpadSlash = 0x3B,
@@ -192,20 +208,25 @@ keycode_enum! {
     NumpadMinus = 0x3D,
     NumpadPeriod = 0x3E,
     NumpadPlus = 0x3F,
+
     PageDown = 0x40,
     PageUp = 0x41,
+
     PauseBreak = 0x42,
     PrintScreen = 0x43,
     ScrollLock = 0x44,
     SemiColon = 0x45,
+
     ShiftLeft = 0x46,
     ShiftRight = 0x47,
+
     Slash = 0x48,
     Spacebar = 0x49,
     Tab = 0x4A,
     Quote = 0x4B,
     WindowsLeft = 0x4C,
     WindowsRight = 0x4D,
+
     A = 0x4E,
     B = 0x4F,
     C = 0x50,
@@ -232,15 +253,21 @@ keycode_enum! {
     X = 0x65,
     Y = 0x66,
     Z = 0x67,
+
     HashTilde = 0x68,
+
     PrevTrack = 0x69,
     NextTrack = 0x6A,
+
     Mute = 0x6B,
+
     Calculator = 0x6C,
+
     Play = 0x6D,
     Stop = 0x6E,
     VolumeDown = 0x6F,
     VolumeUp = 0x70,
+
     WWWHome = 0x71,
     PowerOnTestOk = 0x72,
 }

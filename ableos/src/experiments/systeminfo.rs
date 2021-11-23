@@ -30,7 +30,7 @@ Memory: {}
     );
     return x;
 }
-*/
+// */
 pub const KERNEL_VERSION: &str = env!("CARGO_PKG_VERSION");
 #[cfg(debug_assertions)]
 /// A constant to check if the kernel is in debug mode
